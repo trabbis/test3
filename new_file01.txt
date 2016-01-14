@@ -6,3 +6,6 @@ edited (push branch 'master')
 
 commit and push
 
+
+
+just commit
