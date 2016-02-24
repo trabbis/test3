@@ -4,3 +4,5 @@ just commit
 edited from host
 
 just commit
+
+commit push
