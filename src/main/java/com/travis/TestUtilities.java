@@ -496,20 +496,22 @@ public class TestUtilities {
 		LocalDate date2 = LocalDate.parse("6/25/2015", DateTimeFormat.forPattern("MM/dd/yyyy"));
 		System.out.println("date2..." + date2);
 		
+              LocalDate date3 = new LocalDate().minusDays(1);
+              
+              
+              System.out.println("date3..." + date3);
+              System.out.println("converted to java.util.date..." + date3.toDate());
+              
+              
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
 		LocalDateTime dateTime1 = LocalDateTime.parse("2015-04-12 00:00:00", fmt);
-		
-		System.out.println("date3..." + dateTime1);
-		System.out.println("date4.." + dateTime1.toDate());
-		System.out.println("date5..." + dateTime1.toLocalDate());
+
+		System.out.println("dateTime1..." + dateTime1);
+		System.out.println("dateTime1.." + dateTime1.toDate());
+		System.out.println("dateTime1..." + dateTime1.toLocalDate());
 		
 		DateTime now = new DateTime();
-		
 		DateTime test1 = now.minusDays(10);
-
-		
-		
-        
         
 	}
 

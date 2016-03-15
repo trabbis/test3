@@ -7,6 +7,7 @@
 package com.designpattern.proxy;
 
 /**
+ * This is real Subject
  * @author dchoi@nbsps.com
  *
  */
