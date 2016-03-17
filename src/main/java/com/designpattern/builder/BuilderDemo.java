@@ -7,8 +7,7 @@
 package com.designpattern.builder;
 
 /**
- * @author dchoi@nbsps.com
- *
+ * This example looks like more abstract factory pattern. 
  */
 public class BuilderDemo {
     
