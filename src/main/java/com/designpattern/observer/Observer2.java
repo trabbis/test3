@@ -8,7 +8,9 @@ package com.designpattern.observer;
 
 /**
  * @author dchoi@nbsps.com
- *
+ * interface or abstract
+ * You can use abstract class here instead of interface,
+ * but interface is better design choice, because it gives more flexibility
  */
 public interface Observer2 {
     //public Subject subject;

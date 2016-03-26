@@ -14,12 +14,17 @@ public class ObserverDemo {
 
     public static void main(String[] args) {
         
+    	
         Subject sub = new Subject();
         MobileObserver mobile = new MobileObserver(sub);
         WebObserver web = new WebObserver(sub);
         
         sub.setTemperature(2);
         sub.setTemperature(3);
+   
+        //Very basic, you can not instanciate interface
+        //What about the abstract???
+        //Observer2 test1 = new Observer2();
         
         
     }
