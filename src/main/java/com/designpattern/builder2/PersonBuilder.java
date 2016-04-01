@@ -12,30 +12,30 @@ public class PersonBuilder {
         return person;
     }
     
-    public Person setFirstName(String firstName) {
+    public PersonBuilder setFirstName(String firstName) {
         person.setFirstName(firstName);
-        return person;
+        return this;
     }
 
-    public Person setLastName(String lastName) {
+    public PersonBuilder setLastName(String lastName) {
         person.setLastName(lastName);
-        return person;
+        return this;
      }
 
-    public Person setAge(int age) {
+    public PersonBuilder setAge(int age) {
         person.setAge(age);
-        return person;
+        return this;
     }
 
-    public Person setMarried(boolean married) {
+    public PersonBuilder setMarried(boolean married) {
         person.setMarried(married);
-        return person;
+        return this;
     }
 
 
-    public Person setEmployeed(boolean employeed) {
+    public PersonBuilder setEmployeed(boolean employeed) {
         person.setEmployeed(employeed);
-        return person;
+        return this;
     }
 
 }

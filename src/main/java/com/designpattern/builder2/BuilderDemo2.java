@@ -10,7 +10,7 @@ public class BuilderDemo2 {
         //Better solution. Separating builder from POJO class
         Person person2 = new Person();
         PersonBuilder builder = new PersonBuilder(person2);
-        builder.getPerson().setAge(222).setFirstName("firstName222").setLastName("lastName222").setEmployeed(false).setMarried(true);
+        builder.setAge(222).setFirstName("firstName222").setLastName("lastName222").setEmployeed(false).setMarried(true);
         System.out.println(builder.getPerson());
         
     }
