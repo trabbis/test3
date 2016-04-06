@@ -46,11 +46,6 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 
-
-//import org.apache.commons.collections.list.TreeList;
-
-//import org.apache.commons.collections.list.TreeList;
-
 public class TestUtilities {
 
 	public static final int MIN_YEAR = 0;
@@ -58,6 +53,20 @@ public class TestUtilities {
 
 
 	public static void main (String argv[]) throws Exception {
+	    
+	    collectionEmptyList();
+	    
+	    
+            //to do lists
+            //0. json
+            //1. hiberante (good to go) ... 80%
+            //2. spring framework (good to go) ...40%
+            //3. jsf (good to go) ...20%
+            //4. web service(RESTful web service) ...70%
+            //5. java core .......... 10%
+            //6. EJB
+            //7. Ruby on Rails ....
+            //seminar
 		
     	 //1. test to separate
 //    	 String trackingNo = "D43106488167013730401xyzA";
@@ -395,30 +404,22 @@ public class TestUtilities {
 		
 		//stringImmutableTest();
 		
-		jodaTimeTest();
+//		jodaTimeTest();
 		//jodaTimeConstructor();
 		
 		//IngeterComparison();
 		
 		
-
-		//to do lists
-		//0. json
-		//1. hiberante (good to go) ... 80%
-		//2. spring framework (good to go) ...40%
-		//3. jsf (good to go) ...20%
-		//4. web service(RESTful web service) ...70%
-		//5. java core .......... 10%
-		//6. EJB
-		//7. Ruby on Rails ....
-		//seminar
-		
-		
  }
 	
-	/**
-	 * 
-	 */
+    private static void collectionEmptyList() {
+        
+        List<String> test1 = Collections.emptyList();
+        List<Integer> test2 = Collections.emptyList();
+        
+        System.out.println("collectionEmptyList testing...");
+    }
+
 	private static void IngeterComparison() {
 		Integer a = 1;
 		
