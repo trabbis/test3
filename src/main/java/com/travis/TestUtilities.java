@@ -417,6 +417,10 @@ public class TestUtilities {
         List<String> test1 = Collections.emptyList();
         List<Integer> test2 = Collections.emptyList();
         
+        Integer[] test3 = {1};
+        
+        List<Integer> test4 = Arrays.asList(test3);
+        
         System.out.println("collectionEmptyList testing...");
     }
 
