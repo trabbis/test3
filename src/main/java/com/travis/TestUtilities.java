@@ -45,6 +45,8 @@ import org.joda.time.chrono.GJChronology;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import com.google.gson.Gson;
+
 
 public class TestUtilities {
 
@@ -54,7 +56,10 @@ public class TestUtilities {
 
 	public static void main (String argv[]) throws Exception {
 	    
-	    collectionEmptyList();
+	    gsonTest();
+	    
+	    
+	    //collectionEmptyList();
 	    
 	    
             //to do lists
@@ -412,6 +417,22 @@ public class TestUtilities {
 		
  }
 	
+    /**
+     * 
+     */
+    private static void gsonTest() {
+        Gson gson = new Gson();
+        
+        Employee emp = new Employee("name", 1, 87, "partTime");
+        String json = gson.toJson(emp);
+        
+        System.out.println(json);
+        
+        Employee emp1 = gson.fromJson(json, Employee.class);
+        System.out.println(emp1);
+        
+    }
+
     private static void collectionEmptyList() {
         
         List<String> test1 = Collections.emptyList();
