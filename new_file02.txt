@@ -1,5 +1,3 @@
-changed locally
-
 another change
 
 changed remotely
