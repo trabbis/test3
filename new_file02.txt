@@ -1,12 +1,6 @@
+changed locally
+
 another change
 
+changed remotely
 
-new file02
-edited locally
-just commit
-edited from host
-
-just commit
-
-commit push
-modified remotely

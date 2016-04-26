@@ -1,20 +1,4 @@
-modified locally
-added new file
+just another file chnage
 
-edited (push upstream)
-edited (push branch 'master')
-
-
-commit and push
-
-
-
-just commit
-
-changed again
-
-modifed
-
-just commit
 modified remotely
 
