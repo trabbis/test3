@@ -1,3 +1,4 @@
+modified locally
 added new file
 
 edited (push upstream)
@@ -15,4 +16,5 @@ changed again
 modifed
 
 just commit
+modified remotely
 
