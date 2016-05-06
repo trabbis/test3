@@ -1,4 +1,4 @@
-locally modified ....test1122--remotely modifed
+removed locally ....test1122--remotely modifed
 
 test2
 changed locally3
