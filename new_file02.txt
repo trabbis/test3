@@ -1,4 +1,3 @@
-removed locally ....test1122 --removed remotely
 test2
 changed locally3
 another change
