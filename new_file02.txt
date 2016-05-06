@@ -3,6 +3,6 @@ test2
 changed locally3
 another change
 
-changed remotely3
+changed remotely3-- remote
 
 
