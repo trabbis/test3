@@ -56,7 +56,9 @@ public class TestUtilities {
 
 	public static void main (String argv[]) throws Exception {
 	    
-	    gsonTest();
+	    stringBufferTest();
+	    
+	    //gsonTest();
 	    
 	    
 	    //collectionEmptyList();
@@ -417,6 +419,21 @@ public class TestUtilities {
 		
  }
 	
+    /**
+     * 
+     */
+    private static void stringBufferTest() {
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("test1");
+        
+        //The method append(Object) is ambiguous for the type StringBuilder
+        //you can not append with null value
+        //sb.append(null); 
+        
+        
+    }
+
     /**
      * 
      */
