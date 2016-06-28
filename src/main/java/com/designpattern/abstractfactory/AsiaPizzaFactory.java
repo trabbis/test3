@@ -1,6 +1,6 @@
-package com.designpattern.builder;
+package com.designpattern.abstractfactory;
 
-public class AsiaPizzaBuilder extends PizzaBuilder {
+public class AsiaPizzaFactory extends PizzaFactory {
     
     @Override
     public void buildDough() {

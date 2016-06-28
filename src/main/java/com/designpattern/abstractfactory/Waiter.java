@@ -1,4 +1,4 @@
-package com.designpattern.builder;
+package com.designpattern.abstractfactory;
 
 /**
  * @author dchoi@nbsps.com
@@ -6,8 +6,8 @@ package com.designpattern.builder;
  */
 public class Waiter {
     
-    private PizzaBuilder pizzaBuilder;
-    public void setPizzaBuilder(PizzaBuilder pizzaBuilder) {
+    private PizzaFactory pizzaBuilder;
+    public void setPizzaBuilder(PizzaFactory pizzaBuilder) {
         this.pizzaBuilder= pizzaBuilder;
     }
     

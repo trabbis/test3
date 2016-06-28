@@ -1,6 +1,6 @@
-package com.designpattern.builder;
+package com.designpattern.abstractfactory;
 
-public class HawaiianPizzaBuilder extends PizzaBuilder {
+public class HawaiianPizzaFactory extends PizzaFactory {
 
     
     @Override

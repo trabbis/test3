@@ -1,6 +1,6 @@
-package com.designpattern.builder;
+package com.designpattern.abstractfactory;
 
-public abstract class PizzaBuilder {
+public abstract class PizzaFactory {
     protected Pizza pizza;
     
     public void createNewPizza() {

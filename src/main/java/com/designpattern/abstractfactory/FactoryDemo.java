@@ -4,16 +4,17 @@
  *
  ****************************************************************************************/
 
-package com.designpattern.builder;
+package com.designpattern.abstractfactory;
 
 /**
- * This example looks like more abstract factory pattern. 
+ * This example looks like more abstract factory pattern.
+ * Yes, this is not builder design pattern. Abstract Factory Pattern 
  */
-public class BuilderDemo {
+public class FactoryDemo {
     
     public static void main(String[] args) {
         Waiter waiter = new Waiter();
-        HawaiianPizzaBuilder pizzaBuilder = new HawaiianPizzaBuilder();
+        HawaiianPizzaFactory pizzaBuilder = new HawaiianPizzaFactory();
         waiter.setPizzaBuilder(pizzaBuilder);
         
         waiter.makePizza();
