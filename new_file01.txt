@@ -3,3 +3,4 @@ just another file chnage3
 ed
 edited
 changed from local
+changed remotely
