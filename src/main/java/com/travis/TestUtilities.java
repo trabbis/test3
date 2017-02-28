@@ -20,9 +20,11 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -56,9 +58,15 @@ public class TestUtilities {
 
 	public static void main (String argv[]) throws Exception {
 	    
-	    stringBufferTest();
+		//sorted ordered in the collections
+		ordertedCollection();
+		
+		
+	    //stringBufferTest();
 	    
+		//gson test
 	    //gsonTest();
+	    
 	    
 	    
 	    //collectionEmptyList();
@@ -419,7 +427,84 @@ public class TestUtilities {
 		
  }
 	
-    /**
+    private static void ordertedCollection() {
+    	
+		System.out.print("\nArrayList is orderd collection keeping insertion order...\n");
+    	List<Integer> arrayList = new ArrayList<Integer>();
+    	arrayList.add(41);
+    	arrayList.add(12);
+    	arrayList.add(23);
+    	arrayList.add(34);
+    	arrayList.add(55);
+    	
+    	for (Integer i : arrayList) {
+    		System.out.print(i + "\n");
+    	}
+    	
+		System.out.print("\nHashSet is not ordered collection. No guarantee of insertion order...\n");
+    	Set<Integer> set1 = new HashSet<Integer>();
+    	set1.add(41);
+    	set1.add(12);
+    	set1.add(23);
+    	set1.add(34);
+    	set1.add(55);
+    	for (Integer i : set1) {
+    		System.out.print(i + "\n");
+    	}
+    	
+		System.out.print("\nYou need LinkedHashSet in order to keep order in Set collection...\n");
+    	set1 = new LinkedHashSet<Integer>();
+    	set1.add(41);
+    	set1.add(12);
+    	set1.add(23);
+    	set1.add(34);
+    	set1.add(55);
+    	
+    	for (Integer i : set1) {
+    		System.out.print(i + "\n");
+    	}
+    	
+    	
+		System.out.print("\nHashMap does not keep the insertion order in the key and values...\n");
+        Map<Integer, String> map1 = new HashMap<Integer, String>();
+        map1.put(41, "test41");
+        map1.put(12, "test12");
+        map1.put(23, "test23");
+        map1.put(34, "test34");
+        map1.put(55, "test55");
+    	for (Integer i : map1.keySet()) {
+    		System.out.print(i + "\n");
+    	}
+		System.out.print("\n");
+    	for (String i : map1.values()) {
+    		System.out.print(i + "\n");
+    	}
+    	
+		System.out.print("\nYou need LinkedHashMap in order to keep order in Map collection...\n");
+        map1 = new LinkedHashMap<Integer, String>();
+        map1.put(41, "test41");
+        map1.put(12, "test12");
+        map1.put(23, "test23");
+        map1.put(34, "test34");
+        map1.put(55, "test55");
+    	
+    	for (Integer i : map1.keySet()) {
+    		System.out.print(i + "\n");
+    	}
+		System.out.print("\n");
+    	for (String i : map1.values()) {
+    		System.out.print(i + "\n");
+    	}
+    	
+		System.out.print("\nIn summary...\n");
+		System.out.print("\n1. List is ordered...\n");
+		System.out.print("\n2. Set and Map is not ordered...\n");
+		System.out.print("\n3. In order to keep insertion order for Set and Map, you need LinkedSet, LinkedMap...\n");
+    	
+		
+	}
+
+	/**
      * 
      */
     private static void stringBufferTest() {
