@@ -480,7 +480,6 @@ public class TestUtilities {
     		System.out.print(i + "\n");
     	}
     	
-    	
 		System.out.print("\nYou need LinkedHashMap in order to keep order in Map collection...\n");
         map1 = new LinkedHashMap<Integer, String>();
         map1.put(41, "test41");
