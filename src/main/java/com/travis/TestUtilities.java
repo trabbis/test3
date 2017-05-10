@@ -58,8 +58,23 @@ public class TestUtilities {
 
 	public static void main (String argv[]) throws Exception {
 	    
+		//map update 
+		savingObjectIntoMap();
+		
+		
+		//basic map operation
+		//savingIntoMapAndRetrieving();
+		
+		
+		//convert list to set
+		//convertListToSet();
+		
+		//double test
+		//doubleTest();
+		
+		
 		//sorted ordered in the collections
-		ordertedCollection();
+		//ordertedCollection();
 		
 		
 	    //stringBufferTest();
@@ -427,7 +442,102 @@ public class TestUtilities {
 		
  }
 	
-    private static void ordertedCollection() {
+
+	private static void savingObjectIntoMap() {
+		Map<Integer, TestObject> map1 = new HashMap<Integer, TestObject>();
+		
+		TestObject o1 = new TestObject();
+		o1.setFirstName("first1");
+		o1.setLastName("last1");
+
+		map1.put(1, o1);
+		
+		TestObject o2 = map1.get(1);
+		o2.setFirstName("first2");
+		o2.setLastName("last2");
+		
+		
+		TestObject o3 = map1.get(1);
+		System.out.print(o3 + "\n");
+        
+    	
+	}
+
+
+	private static void savingIntoMapAndRetrieving() {
+
+		Map<Integer, String> map1 = new HashMap<Integer, String>();
+		
+		//saving
+        map1.put(41, "test41");
+        map1.put(12, "test12");
+        map1.put(23, "test23");
+        map1.put(34, "test34");
+        map1.put(55, "test55");
+        
+        //retriving keys
+    	for (Integer i : map1.keySet()) {
+    		System.out.print(i + "\n");
+    	}
+    	
+    	//retrieving values
+		System.out.print("\n");
+    	for (String i : map1.values()) {
+    		System.out.print(i + "\n");
+    	}
+
+    	//iteratoring collections (one way)
+    	Set set = map1.entrySet();
+    	Iterator i = set.iterator();
+    	
+    	while(i.hasNext()) {
+    		Map.Entry entry = (Map.Entry)i.next();
+    		System.out.println(entry.getKey() + ":..." + entry.getValue());
+    	}
+    	
+    	//iteratoring collections (another way)
+    	//I like this. It seems to be cleaner code
+		System.out.print("\n");
+    	Iterator<Integer> keySet = map1.keySet().iterator();
+    	while(keySet.hasNext()) {
+    		Integer key = keySet.next();
+    		System.out.println(key + ":..." + map1.get(key));
+    	}
+    	
+		
+		
+	}
+
+
+	private static void convertListToSet() {
+		// TODO Auto-generated method stub
+		List<String> lists = new ArrayList<String>();
+		lists.add("A");
+		lists.add("B");
+		lists.add("A");
+		lists.add("A");
+		
+		Set<String> sets = new HashSet<String>(lists);
+		System.out.print(sets + "\n");
+		
+		
+	}
+
+
+	private static void doubleTest() {
+		// TODO Auto-generated method stub
+		Double d = null;
+		Double d1 = 0.0;
+		
+		if (d == null && d1.longValue() == 0) {
+    		System.out.print(d1 + "\n");
+			
+		}
+		
+	}
+
+
+	private static void ordertedCollection() {
     	
 		System.out.print("\nArrayList is orderd collection keeping insertion order...\n");
     	List<Integer> arrayList = new ArrayList<Integer>();
@@ -2209,5 +2319,22 @@ class DataObject {
  
 }
 
-
+class TestObject {
+	private String firstName;
+	private String lastName;
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	
+}
 
