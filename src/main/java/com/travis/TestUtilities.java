@@ -58,8 +58,15 @@ public class TestUtilities {
 
 	public static void main (String argv[]) throws Exception {
 	    
+		//Set containsAll test
+		containsAllTestWithSet();
+		
+		//List containsAll test
+		//containsAllTest();
+		
+		
 		//map update 
-		savingObjectIntoMap();
+		//savingObjectIntoMap();
 		
 		
 		//basic map operation
@@ -250,7 +257,7 @@ public class TestUtilities {
 //		isValidEmail(email);
 		
 		//22. enum test
-//		enumTesting();
+		//enumTesting();
 	
 		//23. check digit algorithm
 //		System.out.println("9253331..." + getMod10Digit("9253331"));
@@ -442,6 +449,40 @@ public class TestUtilities {
 		
  }
 	
+
+	private static void containsAllTestWithSet() {
+		Set<String> a = new HashSet<String>();
+		List<String> b = new ArrayList<String>();
+		
+		a.add("apple");
+		a.add("orange");
+		a.add("peach");
+		
+		b.add("peach");
+		b.add("orange");
+		b.add("apple");
+		System.out.print(a.containsAll(b) +  "\n");
+		
+	}
+
+
+	private static void containsAllTest() {
+		List<String> a = new ArrayList<String>();
+		List<String> b = new ArrayList<String>();
+		
+		a.add("apple");
+		a.add("orange");
+		a.add("peach");
+		
+		b.add("orange");
+		b.add("peach");
+		System.out.print(a.containsAll(b) +  "\n");
+		
+		
+		
+		
+	}
+
 
 	private static void savingObjectIntoMap() {
 		Map<Integer, TestObject> map1 = new HashMap<Integer, TestObject>();
@@ -719,6 +760,12 @@ public class TestUtilities {
         dateTime = new DateTime("2015-04-03");
         System.out.println("dateTime5 = " + dateTime);
         
+        // Invalid format
+//        dateTime = new DateTime("2050-12-31 00:00:00");
+//        System.out.println("dateTime6 = " + dateTime);
+//        
+//        dateTime = new DateTime("2005-07-15 00:00:00");
+//        System.out.println("dateTime7 = " + dateTime);
         
         
 	}
@@ -749,7 +796,14 @@ public class TestUtilities {
 		System.out.println("dateTime1..." + dateTime1.toLocalDate());
 		
 		DateTime now = new DateTime();
-		DateTime test1 = now.minusDays(10);
+		
+		DateTime test2 = new DateTime();
+		test2.plusDays(2);
+		System.out.println("test2..." + test2); //DateTime might be immutable
+		
+		DateTime test4 = test2.plusDays(2);
+		System.out.println("test4..." + test4); //So, you have to assign to new variable
+		
         
 	}
 
