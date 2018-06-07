@@ -47,6 +47,7 @@ import org.joda.time.chrono.GJChronology;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 
 
@@ -58,8 +59,13 @@ public class TestUtilities {
 
 	public static void main (String argv[]) throws Exception {
 	    
+		
+		guavaTest();
+		
+//		containsTest();
+		
 		//Set containsAll test
-		containsAllTestWithSet();
+		//containsAllTestWithSet();
 		
 		//List containsAll test
 		//containsAllTest();
@@ -450,6 +456,32 @@ public class TestUtilities {
  }
 	
 
+	private static void guavaTest() {
+		List<String> lists = Lists.newArrayList("abc1", "abc2","abc3");
+		
+		for(String item : lists) {
+			System.out.println(item);
+		}
+		
+	}
+
+
+	private static void containsTest() {
+		// TODO Auto-generated method stub
+		List<String> all = new ArrayList<String>();
+		
+		all.add("abc1");
+		all.add("abc2");
+		all.add("abc1");
+		all.add("abc4");
+		
+		Boolean test1 = all.contains("abc1");
+		System.out.print(test1 +  "\n");
+		
+		
+	}
+
+
 	private static void containsAllTestWithSet() {
 		Set<String> a = new HashSet<String>();
 		List<String> b = new ArrayList<String>();
@@ -510,10 +542,10 @@ public class TestUtilities {
 		Map<Integer, String> map1 = new HashMap<Integer, String>();
 		
 		//saving
-        map1.put(41, "test41");
         map1.put(12, "test12");
         map1.put(23, "test23");
         map1.put(34, "test34");
+        map1.put(41, "test41");
         map1.put(55, "test55");
         
         //retriving keys
