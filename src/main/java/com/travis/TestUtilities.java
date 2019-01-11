@@ -41,6 +41,7 @@ import java.util.regex.Pattern;
 import org.joda.time.Chronology;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.chrono.GJChronology;
@@ -60,7 +61,7 @@ public class TestUtilities {
 	public static void main (String argv[]) throws Exception {
 	    
 		
-		//Tesing2
+		//Tesing3
 		guavaTest();
 		
 //		containsTest();
@@ -448,6 +449,9 @@ public class TestUtilities {
 		
 		//stringImmutableTest();
 		
+		numberOfDaysFromToday("0","1"); //using Joda
+		numberOfDaysFromToday("0","10");
+		numberOfDaysFromToday("1","1");
 //		jodaTimeTest();
 		//jodaTimeConstructor();
 		
@@ -456,6 +460,7 @@ public class TestUtilities {
 		
  }
 	
+
 
 	private static void guavaTest() {
 		List<String> lists = Lists.newArrayList("abc1", "abc2","abc3");
@@ -803,6 +808,22 @@ public class TestUtilities {
         
 	}
 
+	private static void numberOfDaysFromToday(String months, String days) {
+		//DateTime now = new DateTime();
+		
+		DateTime now = new DateTime();
+        
+        DateTime dateSubtractedMonths = now.minusMonths(Integer.parseInt(months));
+        DateTime past = dateSubtractedMonths.minusDays(Integer.parseInt(days));
+        
+        int daysBetween = Days.daysBetween(past.withTimeAtStartOfDay() , now.withTimeAtStartOfDay() ).getDays();
+
+        System.out.println(months +" months, " + days + " days. Days Difference  = " +  daysBetween);
+        
+	}
+
+
+	
 	private static void jodaTimeTest() {
 		
 		LocalDate date1 = new LocalDate("2015-04-12");  //this is default
