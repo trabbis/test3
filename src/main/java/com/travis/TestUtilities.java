@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.net.URLEncoder;
@@ -38,6 +39,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.stream.StreamSource;
+
 import org.joda.time.Chronology;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -59,10 +66,14 @@ public class TestUtilities {
 
 
 	public static void main (String argv[]) throws Exception {
-	    
+	
+//		convertToXml();
+		convertFromXml();		
+
+		
 		
 		//Tesing3
-		guavaTest();
+//		guavaTest();
 		
 //		containsTest();
 		
@@ -95,7 +106,7 @@ public class TestUtilities {
 	    //stringBufferTest();
 	    
 		//gson test
-	    //gsonTest();
+//		gsonTest();
 	    
 	    
 	    
@@ -449,9 +460,9 @@ public class TestUtilities {
 		
 		//stringImmutableTest();
 		
-		numberOfDaysFromToday("0","1"); //using Joda
-		numberOfDaysFromToday("0","10");
-		numberOfDaysFromToday("1","1");
+//		numberOfDaysFromToday("0","1"); //using Joda
+//		numberOfDaysFromToday("0","10");
+//		numberOfDaysFromToday("1","1");
 //		jodaTimeTest();
 		//jodaTimeConstructor();
 		
@@ -461,6 +472,67 @@ public class TestUtilities {
  }
 	
 
+
+	private static <T> T fromXml(String s, Class<T> cls) throws JAXBException {
+		Map<String, JAXBContext> map = new HashMap<String, JAXBContext>();
+		if (map.get(cls.getName()) == null) {
+			map.put(cls.getName(), JAXBContext.newInstance(cls));
+		}
+		JAXBContext jc = map.get(cls.getName());
+		Unmarshaller u = jc.createUnmarshaller();
+		return (T) u.unmarshal(new StreamSource(new StringReader(s)));
+	}
+	
+	private static void convertFromXml() throws JAXBException {
+//        Employee emp = new Employee("name", 1, 87, "partTime");
+		String test1 = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n" + 
+				"<employee>\r\n" + 
+				"    <age>87</age>\r\n" + 
+				"    <id>1</id>\r\n" + 
+				"    <name>name</name>\r\n" + 
+				"    <type>partTime</type>\r\n" + 
+				"</employee>";
+		
+        Employee emp = fromXml(test1, Employee.class);
+		
+		System.out.println(emp);
+		
+	}
+	
+
+	
+
+	private static void convertToXml() throws JAXBException {
+        Employee emp = new Employee("name", 1, 87, "partTime");
+		String test1 = toXml(emp, Employee.class);
+		
+		System.out.println(test1);
+		
+	}
+	
+	//From WFM project
+	private static <T> String toXml(Object o, Class<T> cls) throws JAXBException {
+		Map<String, JAXBContext> map = new HashMap<String, JAXBContext>();
+		if (o == null || cls == null) {
+			return null;
+		}
+		if (map.get(cls.getName()) == null) {
+			map.put(cls.getName(), JAXBContext.newInstance(cls));
+		}
+		JAXBContext jc = map.get(cls.getName());
+		return toXml(o, jc);
+	}
+	
+	private static <T> String toXml(Object o, JAXBContext jc) throws JAXBException {
+		StringWriter result = new StringWriter();;
+		if (o == null) {
+			return null;
+		}
+		Marshaller m = jc.createMarshaller();
+		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		m.marshal(o, result);
+		return result.toString();
+	}
 
 	private static void guavaTest() {
 		List<String> lists = Lists.newArrayList("abc1", "abc2","abc3");
