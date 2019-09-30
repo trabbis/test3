@@ -12,6 +12,13 @@ import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -49,11 +56,11 @@ import org.joda.time.Chronology;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Days;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
+//import org.joda.time.LocalDate;
+//import org.joda.time.LocalDateTime;//
 import org.joda.time.chrono.GJChronology;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+//import org.joda.time.format.DateTimeFormatter;
 
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
@@ -67,8 +74,15 @@ public class TestUtilities {
 
 	public static void main (String argv[]) throws Exception {
 	
+		convertToZonedDateTime("2019-09-25 16:00", "America/Edmonton");
+		zonedDateTimeAtDifferentTimeZone();
+		instantExample();
+		convertToUTCTime();
+		
+		
+		
 //		convertToXml();
-		convertFromXml();		
+//		convertFromXml();		
 
 		
 		
@@ -471,6 +485,87 @@ public class TestUtilities {
 		
  }
 	
+
+
+	private static void convertToUTCTime() {
+		ZonedDateTime zonedDateTime = ZonedDateTime.parse("2019-09-25T08:00:00.000-06:00"); 
+		System.out.println(zonedDateTime);
+		
+		//Getting in UTC time
+        ZonedDateTime utcTime = zonedDateTime.withZoneSameInstant(ZoneOffset.UTC); 
+        System.out.println(utcTime);
+        
+        LocalDateTime localDateTime = utcTime.toLocalDateTime();
+        System.out.println(localDateTime);
+        
+        //Converting to Date object
+        Date date = java.sql.Timestamp.valueOf(localDateTime);
+        System.out.println(date);
+        
+        
+	}
+
+
+
+	private static void instantExample() {
+		String timestamp = "2019-09-25 16:00"; //This is more UTC time
+		ZoneId zone = null;
+//        zone = ZoneId.of("America/Edmonton");
+        zone = ZoneId.systemDefault(); //This is our current time zone. EST time zone
+        
+		 final DateTimeFormatter formatter2 = DateTimeFormatter
+                 .ofPattern("yyyy-MM-dd HH:mm")
+                 .withZone(zone);
+		 Instant result = Instant.from(formatter2.parse(timestamp));
+
+		 System.out.println(result);
+
+		 String dateInString = "2016-09-16T22:00:01Z";
+		 Instant instant = Instant.parse(dateInString);
+		 
+		 System.out.println(instant);
+		
+	}
+
+
+
+	private static void zonedDateTimeAtDifferentTimeZone() {
+	        Instant instant = Instant.now();
+
+	        System.out.println("Instant : " + instant);
+
+	        //get date time only
+	        LocalDateTime result = LocalDateTime.ofInstant(instant, ZoneId.of(ZoneOffset.UTC.getId()));
+
+	        //get localdate
+//	        System.out.println("LocalDate : " + result.toLocalDate());
+	        System.out.println("LocalDateTime : " + result);
+
+	        //get date time + timezone
+	        ZonedDateTime zonedDateTime = instant.atZone(ZoneId.of("America/New_York"));
+	        System.out.println(zonedDateTime);
+
+	        //get date time + timezone
+	        ZonedDateTime zonedDateTime2 = instant.atZone(ZoneId.of("Asia/Tokyo"));
+	        System.out.println(zonedDateTime2);
+	        
+	}
+
+
+
+	private static void convertToZonedDateTime(String timestamp, String zoneName) {
+		//String timestamp = "2019-09-25 16:00";
+
+		//"Europe/Paris");
+		ZoneId zone = ZoneId.of(zoneName);
+		
+		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(zone);
+		 LocalDateTime localDate = LocalDateTime.parse(timestamp, formatter);
+		 System.out.println(localDate);
+        
+		 ZonedDateTime zonedDateTime = ZonedDateTime.of(localDate, zone);		
+		 System.out.println(zonedDateTime);
+	}
 
 
 	private static <T> T fromXml(String s, Class<T> cls) throws JAXBException {
@@ -895,43 +990,44 @@ public class TestUtilities {
 	}
 
 
-	
-	private static void jodaTimeTest() {
-		
-		LocalDate date1 = new LocalDate("2015-04-12");  //this is default
-		System.out.println("date1..." + date1);
-		//System.out.println("date..." + date.toDate());
-		
-		
-		//if date format is different, then use this way
-		LocalDate date2 = LocalDate.parse("6/25/2015", DateTimeFormat.forPattern("MM/dd/yyyy"));
-		System.out.println("date2..." + date2);
-		
-              LocalDate date3 = new LocalDate().minusDays(1);
-              
-              
-              System.out.println("date3..." + date3);
-              System.out.println("converted to java.util.date..." + date3.toDate());
-              
-              
-		DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
-		LocalDateTime dateTime1 = LocalDateTime.parse("2015-04-12 00:00:00", fmt);
 
-		System.out.println("dateTime1..." + dateTime1);
-		System.out.println("dateTime1.." + dateTime1.toDate());
-		System.out.println("dateTime1..." + dateTime1.toLocalDate());
-		
-		DateTime now = new DateTime();
-		
-		DateTime test2 = new DateTime();
-		test2.plusDays(2);
-		System.out.println("test2..." + test2); //DateTime might be immutable
-		
-		DateTime test4 = test2.plusDays(2);
-		System.out.println("test4..." + test4); //So, you have to assign to new variable
-		
-        
-	}
+	//@Deprecated
+//	private static void jodaTimeTest() {
+//		
+//		LocalDate date1 = new LocalDate("2015-04-12");  //this is default
+//		System.out.println("date1..." + date1);
+//		//System.out.println("date..." + date.toDate());
+//		
+//		
+//		//if date format is different, then use this way
+//		LocalDate date2 = LocalDate.parse("6/25/2015", DateTimeFormat.forPattern("MM/dd/yyyy"));
+//		System.out.println("date2..." + date2);
+//		
+//              LocalDate date3 = new LocalDate().minusDays(1);
+//              
+//              
+//              System.out.println("date3..." + date3);
+//              System.out.println("converted to java.util.date..." + date3.toDate());
+//              
+//              
+//		DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+//		LocalDateTime dateTime1 = LocalDateTime.parse("2015-04-12 00:00:00", fmt);
+//
+//		System.out.println("dateTime1..." + dateTime1);
+//		System.out.println("dateTime1.." + dateTime1.toDate());
+//		System.out.println("dateTime1..." + dateTime1.toLocalDate());
+//		
+//		DateTime now = new DateTime();
+//		
+//		DateTime test2 = new DateTime();
+//		test2.plusDays(2);
+//		System.out.println("test2..." + test2); //DateTime might be immutable
+//		
+//		DateTime test4 = test2.plusDays(2);
+//		System.out.println("test4..." + test4); //So, you have to assign to new variable
+//		
+//        
+//	}
 
 	private static void stringImmutableTest() {
 		
