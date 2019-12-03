@@ -1,5 +1,6 @@
 package com.travis;
 
+//import static org.junit.Assert.assertTrue;
 import java.awt.GraphicsEnvironment;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,6 +20,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -74,14 +76,17 @@ public class TestUtilities {
 
 	public static void main (String argv[]) throws Exception {
 	
-		convertToZonedDateTime("2019-09-25 16:00", "America/Edmonton");
-		zonedDateTimeAtDifferentTimeZone();
-		instantExample();
+		filteringEntries();
+		checkingTomorrow();
+		combiningLocalDateTimeWithZone();
+		currentTimeInUTCAndInDifferentTimeZone();
 		convertToUTCTime();
+		convertLocalDateTimeInUTC();
 		
 		
 		
 //		convertToXml();
+		
 //		convertFromXml();		
 
 		
@@ -487,76 +492,106 @@ public class TestUtilities {
 	
 
 
+	private static void convertLocalDateTimeInUTC() {
+        //converting from localDateTime to UTC
+		LocalDateTime now = LocalDateTime.now();
+        ZonedDateTime utcTime = ZonedDateTime.ofLocal(now, ZoneOffset.UTC, null);
+        System.out.println("utcTime..." + utcTime);
+        LocalDateTime localDateTimeInUTC = utcTime.toLocalDateTime();
+        System.out.println("localDateTimeInUTC..." + localDateTimeInUTC);
+        
+        
+//        ZonedDateTime now2 = ZonedDateTime.now();
+//        ZonedDateTime nowInUTC = ZonedDateTime.now(ZoneOffset.UTC);
+//        System.out.println("now2..." + now2);
+//        System.out.println("nowInUTC..." + nowInUTC);
+        
+        
+		
+	}
+
+
+
+	private static void filteringEntries() {
+        String a[] = new String[] { "A", "B", "C", "D" }; 
+        
+        // getting the list view of Array 
+        List<String> list = Arrays.asList(a); 
+
+        System.out.println(list.contains("a"));
+        
+		
+	}
+
+
+
+	private static void checkingTomorrow() {
+		
+		ZonedDateTime realNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
+		 ZonedDateTime now = ZonedDateTime.now(ZoneId.of("America/Montreal")); //.truncatedTo(ChronoUnit.DAYS);
+		 ZonedDateTime tomorrow = now.plusDays(1);
+		 ZonedDateTime purgetDate = now.minusDays(30);
+		 
+		 ZonedDateTime nowPlusFewHour = realNow.plusHours(23);
+		 
+		 if (nowPlusFewHour.isAfter(tomorrow)) {
+		        System.out.println("SOMETHING WRONG");
+		 }
+	        System.out.println(nowPlusFewHour);
+		 
+		
+	}
+
+
+
 	private static void convertToUTCTime() {
+		//2001-07-04T12:08:56.235-0700 ... does not work (yyyy-MM-dd'T'HH:mm:ss.SSSZ)
+		//yyyy-MM-dd'T'HH:mm:ss.SSSXXX ...works 
+        //converting from String localDateTime with zone to UTC
 		ZonedDateTime zonedDateTime = ZonedDateTime.parse("2019-09-25T08:00:00.000-06:00"); 
 		System.out.println(zonedDateTime);
 		
 		//Getting in UTC time
         ZonedDateTime utcTime = zonedDateTime.withZoneSameInstant(ZoneOffset.UTC); 
-        System.out.println(utcTime);
+        System.out.println("utcTime..." + utcTime);
         
+        
+        //Converting to LocalDateTime & Data Object
         LocalDateTime localDateTime = utcTime.toLocalDateTime();
-        System.out.println(localDateTime);
+        System.out.println("localDateTime..." + localDateTime);
         
         //Converting to Date object
         Date date = java.sql.Timestamp.valueOf(localDateTime);
         System.out.println(date);
         
-        
 	}
 
 
 
-	private static void instantExample() {
-		String timestamp = "2019-09-25 16:00"; //This is more UTC time
-		ZoneId zone = null;
-//        zone = ZoneId.of("America/Edmonton");
-        zone = ZoneId.systemDefault(); //This is our current time zone. EST time zone
-        
-		 final DateTimeFormatter formatter2 = DateTimeFormatter
-                 .ofPattern("yyyy-MM-dd HH:mm")
-                 .withZone(zone);
-		 Instant result = Instant.from(formatter2.parse(timestamp));
-
-		 System.out.println(result);
-
-		 String dateInString = "2016-09-16T22:00:01Z";
-		 Instant instant = Instant.parse(dateInString);
-		 
-		 System.out.println(instant);
-		
-	}
-
-
-
-	private static void zonedDateTimeAtDifferentTimeZone() {
+	private static void currentTimeInUTCAndInDifferentTimeZone() {
+			//Instant is a moment on the timeline in UTC. Capture the current moment in UTC.
 	        Instant instant = Instant.now();
 
-	        System.out.println("Instant : " + instant);
+	        System.out.println("Current time in UTC : " + instant);
 
-	        //get date time only
+	        //Get date time only (only Date and Time. No timezone)
 	        LocalDateTime result = LocalDateTime.ofInstant(instant, ZoneId.of(ZoneOffset.UTC.getId()));
-
-	        //get localdate
-//	        System.out.println("LocalDate : " + result.toLocalDate());
 	        System.out.println("LocalDateTime : " + result);
 
-	        //get date time + timezone
+	        //Get date time + timezone
 	        ZonedDateTime zonedDateTime = instant.atZone(ZoneId.of("America/New_York"));
-	        System.out.println(zonedDateTime);
+	        System.out.println("In New York time..." + zonedDateTime);
 
 	        //get date time + timezone
 	        ZonedDateTime zonedDateTime2 = instant.atZone(ZoneId.of("Asia/Tokyo"));
-	        System.out.println(zonedDateTime2);
+	        System.out.println("In Tokyo time..." + zonedDateTime2);
 	        
 	}
 
+	private static void combiningLocalDateTimeWithZone() {
+		String timestamp =  "2019-09-25 16:00";
+		String zoneName= "America/Edmonton";
 
-
-	private static void convertToZonedDateTime(String timestamp, String zoneName) {
-		//String timestamp = "2019-09-25 16:00";
-
-		//"Europe/Paris");
 		ZoneId zone = ZoneId.of(zoneName);
 		
 		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(zone);
