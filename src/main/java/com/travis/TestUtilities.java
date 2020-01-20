@@ -76,6 +76,7 @@ public class TestUtilities {
 
 	public static void main (String argv[]) throws Exception {
 	
+		addingAll();
 		filteringEntries();
 		checkingTomorrow();
 		combiningLocalDateTimeWithZone();
@@ -490,6 +491,27 @@ public class TestUtilities {
 		
  }
 	
+
+
+	private static void addingAll() {
+		// TODO Auto-generated method stub
+		
+        String allowedIds[] = new String[] {"T000169", "T017347", "T017376", "T044171", "T044176", "T044210", "T044245", "T115629", "T852789", "T047789"}; 
+        String allowedIds2[] = new String[] {"T889447", "T865473", "T000169", "T874846", "T865611", "T846131", "Tt902804", "T848998", "T837165", "T820288", "T896964", "T823722", "T837164"}; 
+        String allowedIds3[] = new String[] {"T905373", "T251500", "T876330", "T944640", "T888346", "T809359", "T881992"}; 
+        List<String> allowedTechnicianIdList = Arrays.asList(allowedIds);
+        List<String> allowedTechnicianIdList2 = Arrays.asList(allowedIds2);
+        List<String> allowedTechnicianIdList3 = Arrays.asList(allowedIds3);
+        
+        List<String> allTechnicians = new ArrayList<String>();
+        
+        allTechnicians.addAll(allowedTechnicianIdList);
+        allTechnicians.addAll(allowedTechnicianIdList2);
+        allTechnicians.addAll(allowedTechnicianIdList3);
+        
+		
+	}
+
 
 
 	private static void convertLocalDateTimeInUTC() {
