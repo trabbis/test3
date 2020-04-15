@@ -5,4 +5,4 @@ locally...changed remotely3-- remote
 edited2
 
 changed in branches
-
+another changes in branch3
