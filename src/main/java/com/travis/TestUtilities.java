@@ -76,7 +76,7 @@ public class TestUtilities {
 
 	public static void main (String argv[]) throws Exception {
 	
-		addingAll();
+//		addingAll();
 		filteringEntries();
 		checkingTomorrow();
 		combiningLocalDateTimeWithZone();
@@ -86,9 +86,8 @@ public class TestUtilities {
 		
 		
 		
-//		convertToXml();
-		
-//		convertFromXml();		
+		convertToXml();
+		convertFromXml();		
 
 		
 		
@@ -491,7 +490,12 @@ public class TestUtilities {
 		
  }
 	
-
+	
+	//TODO2
+    private static Object fromXml2(String req, Class cls) throws JAXBException {
+    	Unmarshaller u = JAXBContext.newInstance(cls).createUnmarshaller();
+    	return u.unmarshal(new StringReader(req));
+    }
 
 	private static void addingAll() {
 		// TODO Auto-generated method stub
@@ -648,6 +652,12 @@ public class TestUtilities {
         Employee emp = fromXml(test1, Employee.class);
 		
 		System.out.println(emp);
+		
+        Employee emp1 = (Employee)fromXml2(test1, Employee.class);
+		
+		System.out.println(emp1);
+
+		
 		
 	}
 	
