@@ -52,6 +52,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.transform.stream.StreamSource;
 
 import org.joda.time.Chronology;
@@ -77,6 +80,11 @@ public class TestUtilities {
 	public static void main (String argv[]) throws Exception {
 	
 //		addingAll();
+		
+		extractingOutAccessToken();
+		
+		convertingXMLGregorianCalendar();
+		
 		filteringEntries();
 		checkingTomorrow();
 		combiningLocalDateTimeWithZone();
@@ -491,6 +499,39 @@ public class TestUtilities {
  }
 	
 	
+	private static void extractingOutAccessToken() {
+		String bearer = "Bearer ";
+		String token = "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJzY29wZSI6WyJvcGVuaWQiLCJwcm9maWxlIiwiNjQiXSwiY2xpZW50X2lkIjoiYjhkODA1ZTYtYzYxZi00NjA4LTgxNGYtNTY2ZWZlNDk2OTJlIiwiaXNzIjoiaHR0cHM6Ly90ZWFtc3NvLWl0czA0LnRlbHVzLmNvbSIsImF1ZCI6ImtvbmciLCJleHAiOjE1OTUyNjAxNzl9.nMghqgKb-9Jpjv3lZ8ZSCw6umNqO5WLaWEkwIcHG2GLYCeK19wRkvVY5vdYEEcDMio2WzZfmz7adi4jC_ye0h1NAkZkWG-_ojl9Cxikw7cxQ90f1zjV3ztRg0-O3jWSJa4ocUNufGIBOHJILFlLbNR-a0RjRKcHZ8g8wELT3aTpgMD4hbsR9Mnv9ePiqIKwmA1PUu9SeHip4hRxyHiGSq6LLTmzZH_CmmBUuODK-u9o4edggXiGy8weLBzTzZ5bgNScCHKDOs2OiMK-RbmPYmbd1wsdakN1I5N7L-kr8yEX1lf-gVmFXZrruooA3K7Xt1gBuhZqja2wxKJvUEPy7Rg";
+
+		String a2= token.substring(bearer.length());
+		System.out.println(a2.length() + "," + a2);
+				
+	}
+
+
+	private static void convertingXMLGregorianCalendar() throws Exception {
+		
+		LocalDate localDate = LocalDate.of(2019, 4, 25);
+		XMLGregorianCalendar xc = 
+		  DatatypeFactory.newInstance().newXMLGregorianCalendar(localDate.toString());
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        GregorianCalendar gCalendar = xc.toGregorianCalendar();
+ 
+        //Converted to date object
+        Date date = gCalendar.getTime();
+ 
+        //Formatted to String value
+        String dateString = df.format(date);
+        System.out.println("convertingXMLGregorianCalendar..." + localDate);
+        System.out.println("convertingXMLGregorianCalendar..." + dateString);
+        
+        //ZonedDateTime
+        ZonedDateTime zdt = xc.toGregorianCalendar().toZonedDateTime();
+        System.out.println("convertingXMLGregorianCalendar..." + zdt);
+	}
+
+
 	//TODO2
     private static Object fromXml2(String req, Class cls) throws JAXBException {
     	Unmarshaller u = JAXBContext.newInstance(cls).createUnmarshaller();
