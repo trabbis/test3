@@ -67,8 +67,16 @@ import org.joda.time.chrono.GJChronology;
 import org.joda.time.format.DateTimeFormat;
 //import org.joda.time.format.DateTimeFormatter;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.github.reinert.jjschema.v1.JsonSchemaFactory;
+import com.github.reinert.jjschema.v1.JsonSchemaV4Factory;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
+import com.telus.mediation.usage.internal.model.BatchInfoTypeVO;
+import com.telus.mediation.usage.internal.model.DataServiceEventVO;
+import com.telus.mediation.usage.internal.model.RawUsageListResponseVO;
 
 
 public class TestUtilities {
@@ -81,17 +89,19 @@ public class TestUtilities {
 	
 //		addingAll();
 
+		javaToJsonSchema();
+		
 		//testing2
-		extractingOutAccessToken();
-		
-		convertingXMLGregorianCalendar();
-		
-		filteringEntries();
-		checkingTomorrow();
-		combiningLocalDateTimeWithZone();
-		currentTimeInUTCAndInDifferentTimeZone();
-		convertToUTCTime();
-		convertLocalDateTimeInUTC();
+//		extractingOutAccessToken();
+//		
+//		convertingXMLGregorianCalendar();
+//		
+//		filteringEntries();
+//		checkingTomorrow();
+//		combiningLocalDateTimeWithZone();
+//		currentTimeInUTCAndInDifferentTimeZone();
+//		convertToUTCTime();
+//		convertLocalDateTimeInUTC();
 		
 		
 		
@@ -230,12 +240,12 @@ public class TestUtilities {
 //		System.out.println(weekValueWording("12345"));
 
 		//14. SimpleDateFormat
-//		System.out.println(convertingSimpleDateFormat("05/30/2008", "MM/dd/yyyy") );
-//		System.out.println(convertingSimpleDateFormat("May 30, 2008", "MMM dd, yyyy") );
-//		System.out.println(convertingSimpleDateFormat("05/30/2008 10:14", "MM/dd/yyyy HH:mm") );
-		//System.out.println(convertingSimpleDateFormat("11/20/2014 09:15", "MM/dd/yyyy HH:mm") );
+		System.out.println(convertingSimpleDateFormat1("2020-10-10", "yyyy-MM-dd") );
+//		System.out.println(convertingSimpleDateFormat1("May 30, 2008", "MMM dd, yyyy") );
+//		System.out.println(convertingSimpleDateFormat1("05/30/2008 10:14", "MM/dd/yyyy HH:mm") );
+		//System.out.println(convertingSimpleDateFormat1("11/20/2014 09:15", "MM/dd/yyyy HH:mm") );
 		
-		//System.out.println(convertingSimpleDateFormat2("11/20/2014 09:15", "MM/dd/yyyy HH:mm") );
+//		System.out.println(convertingSimpleDateFormat2("11/20/2014 09:15") );
 		
 		//15. how to get the error line using printStackTrace() method
 //		try {
@@ -500,6 +510,16 @@ public class TestUtilities {
  }
 	
 	
+	private static void javaToJsonSchema() {
+
+		JsonSchemaFactory schemaFactory = new JsonSchemaV4Factory();
+		schemaFactory.setAutoPutDollarSchema(true);
+		JsonNode productSchema = schemaFactory.createSchema(DataServiceEventVO.class);
+		System.out.println(productSchema);
+        
+	}
+
+
 	private static void extractingOutAccessToken() {
 		String bearer = "Bearer ";
 		String token = "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJzY29wZSI6WyJvcGVuaWQiLCJwcm9maWxlIiwiNjQiXSwiY2xpZW50X2lkIjoiYjhkODA1ZTYtYzYxZi00NjA4LTgxNGYtNTY2ZWZlNDk2OTJlIiwiaXNzIjoiaHR0cHM6Ly90ZWFtc3NvLWl0czA0LnRlbHVzLmNvbSIsImF1ZCI6ImtvbmciLCJleHAiOjE1OTUyNjAxNzl9.nMghqgKb-9Jpjv3lZ8ZSCw6umNqO5WLaWEkwIcHG2GLYCeK19wRkvVY5vdYEEcDMio2WzZfmz7adi4jC_ye0h1NAkZkWG-_ojl9Cxikw7cxQ90f1zjV3ztRg0-O3jWSJa4ocUNufGIBOHJILFlLbNR-a0RjRKcHZ8g8wELT3aTpgMD4hbsR9Mnv9ePiqIKwmA1PUu9SeHip4hRxyHiGSq6LLTmzZH_CmmBUuODK-u9o4edggXiGy8weLBzTzZ5bgNScCHKDOs2OiMK-RbmPYmbd1wsdakN1I5N7L-kr8yEX1lf-gVmFXZrruooA3K7Xt1gBuhZqja2wxKJvUEPy7Rg";
@@ -2107,16 +2127,17 @@ public static String readableFormatBySpace(String original, int number) {
 	} //public static boolean isWorkableDay(int iDateWeekOfDay, String sWorkableDays) {
 	
 	
-	public static String convertingSimpleDateFormat(String sDate, String dateFormat) throws Exception {
+	public static String convertingSimpleDateFormat1(String sDate, String dateFormat) throws Exception {
 		
 		//String DATE_FORMAT2 = "MMM dd, yyyy"; //uppercase MM matters. should not be mm.
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(dateFormat);
 		Date date1 = sdf.parse(sDate);
 
+		
 		return sdf.format(date1);
 	}
 	
-	public static String convertingSimpleDateFormat2(String sDate, String dateFormat) throws Exception {
+	public static String convertingSimpleDateFormat2(String sDate) throws Exception {
 		
 		Date myDate = new Date();
 	    System.out.println(myDate);
