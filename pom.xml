@@ -48,12 +48,12 @@
 </dependency>
  -->
 
-<dependency>
+<!-- <dependency>
   <groupId>com.github.reinert</groupId>
   <artifactId>jjschema</artifactId>
   <version>1.16</version>
 </dependency>
-
+ -->
 
         
         
