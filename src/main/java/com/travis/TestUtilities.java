@@ -13,6 +13,9 @@ import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 //import java.time.Instant;
 //import java.time.LocalDate;
 //import java.time.LocalDateTime;
@@ -90,7 +93,8 @@ public class TestUtilities {
 	
 //		addingAll();
 
-		javaToJsonSchema();
+		convertStringToLocalDateTime();
+//		javaToJsonSchema();
 		
 		//testing2
 //		extractingOutAccessToken();
@@ -241,7 +245,7 @@ public class TestUtilities {
 //		System.out.println(weekValueWording("12345"));
 
 		//14. SimpleDateFormat
-		System.out.println(convertingSimpleDateFormat1("2020-10-10", "yyyy-MM-dd") );
+//		System.out.println(convertingSimpleDateFormat1("2020-10-10", "yyyy-MM-dd") );
 //		System.out.println(convertingSimpleDateFormat1("May 30, 2008", "MMM dd, yyyy") );
 //		System.out.println(convertingSimpleDateFormat1("05/30/2008 10:14", "MM/dd/yyyy HH:mm") );
 		//System.out.println(convertingSimpleDateFormat1("11/20/2014 09:15", "MM/dd/yyyy HH:mm") );
@@ -530,6 +534,25 @@ public class TestUtilities {
 				
 	}
 
+	
+	public static void convertStringToLocalDateTime() {
+		String dateStr = "2020-08-17T10:11:16.908732";
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
+
+		LocalDateTime dateTime = LocalDateTime.parse(dateStr, format);
+		System.out.println(dateTime);
+
+		dateStr = "2020-08-17T10:11:16.908732";
+		dateTime = LocalDateTime.parse(dateStr); //yyyy-MM-dd'T'HH:mm:ss.SSSSSS" is default format, so no need to specify
+		System.out.println(dateTime);
+		
+		dateStr = "2021-09-19T10:11:16";
+		format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+
+		dateTime = LocalDateTime.parse(dateStr, format);
+		System.out.println(dateTime);
+
+	}
 
 	private static void convertingXMLGregorianCalendar() throws Exception {
 		
@@ -651,7 +674,6 @@ public class TestUtilities {
 //        System.out.println(date);
         
 	}
-
 
 
 	private static void currentTimeInUTCAndInDifferentTimeZone() {
