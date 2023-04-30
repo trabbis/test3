@@ -24,4 +24,15 @@ public class ArrayQuestionsTest {
 		
 	}
 	
+	@Test
+	public void reverseNumber() {
+		
+		int a = 12345;
+		assertEquals(54321, ArrayQuestions.reverseNumber(a));
+		assertEquals(7654321, ArrayQuestions.reverseNumber(1234567));
+		
+		
+		
+	}
+	
 }
