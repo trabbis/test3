@@ -12,9 +12,6 @@ public class ArrayQuestionsTest {
 	public void findMax() {
 		assertEquals(5, ArrayQuestions.findMax(new int[] {1,2,3,4,5,-1}));
 		assertEquals(2147483647, ArrayQuestions.findMax(new int[] {1,2,3,4,Integer.MAX_VALUE,-1}));
-		
-		
-		
 	}
 
 }
