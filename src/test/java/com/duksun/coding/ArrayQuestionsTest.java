@@ -14,4 +14,14 @@ public class ArrayQuestionsTest {
 		assertEquals(2147483647, ArrayQuestions.findMax(new int[] {1,2,3,4,Integer.MAX_VALUE,-1}));
 	}
 
+	@Test
+	public void reverseArray() {
+		String[] strings = new String[] {"one", "two", "three"};
+		String[] newOnes = ArrayQuestions.reverseArray(strings);
+		
+		assertEquals("three", newOnes[0]);
+		assertEquals("two", newOnes[1]);
+		
+	}
+	
 }

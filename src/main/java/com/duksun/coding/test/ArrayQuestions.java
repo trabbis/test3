@@ -15,7 +15,19 @@ public class ArrayQuestions {
 			}
 		}
 		return max;
-		
 	}
+	
+	public static String[] reverseArray(String[] strings) {
+		
+		int size = strings.length;
+		String[] newStrings = new String[size];
+		
+		for(int i=0;i<size;i++) {
+			newStrings[size-i-1] = strings[i];
+		}
+		
+		return newStrings;
+	}
+	
 
 }
