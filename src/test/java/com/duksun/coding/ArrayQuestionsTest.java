@@ -30,8 +30,27 @@ public class ArrayQuestionsTest {
 		int a = 12345;
 		assertEquals(54321, ArrayQuestions.reverseNumber(a));
 		assertEquals(7654321, ArrayQuestions.reverseNumber(1234567));
-		
-		
+	}
+	
+	@Test
+	public void factorial() {
+		assertEquals(2, ArrayQuestions.factorial(2));
+		assertEquals(6, ArrayQuestions.factorial(3));
+		assertEquals(720, ArrayQuestions.factorial(6));
+	}
+	
+	
+	@Test
+	public void arrayIntegerSortingReverse() {
+		Integer[] sortedInteger = ArrayQuestions.arrayIntegerSortingReverse(new Integer[] {1,4,5,2});
+		assertEquals(5, sortedInteger[0]);
+	}
+	
+	@Test
+	public void arrayPrimitiveSortReverse() {
+		int[] orig = new int[] {1,4,5,2,7};
+		int[] sorted = ArrayQuestions.arrayPrimitiveSortingReverse(orig);
+		assertEquals(7, sorted[0]);
 		
 	}
 	

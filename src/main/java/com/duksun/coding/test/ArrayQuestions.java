@@ -1,5 +1,8 @@
 package com.duksun.coding.test;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public class ArrayQuestions {
 	public static void main(String[] args) {
 		
@@ -62,10 +65,46 @@ public class ArrayQuestions {
 		//1%10 = 1
 		//1/10 = 0
 		//5432*10 + 1
-		
-		
-		
 		return reverse;
-		
 	}
+	
+	public static int factorial(int number) {
+		
+		int factorial = 1;
+		
+		while (number > 0) {
+			factorial = factorial * number;
+			number = number -1;
+		}
+		
+		return factorial;
+	}
+	
+	
+	public static Integer[] arrayIntegerSortingReverse(Integer[] numbers) {
+		Arrays.sort(numbers, Collections.reverseOrder());
+		return numbers;
+	}
+	
+	public static int[] arrayPrimitiveSortingReverse(int[] numbers) {
+		//There is no Arrays.sort for primitive data type for descending 
+		//So we will do ascending first and flip over
+		//1. sorting in ascending order first
+		//2. reverse manually
+		Arrays.sort(numbers);
+
+		int last = numbers.length -1;
+		int middle = numbers.length/2;
+		for(int i=0;i < middle;i++) {
+			int temp = numbers[i];
+			numbers[i] = numbers[numbers.length - i -1];
+			numbers[last-i] = temp;
+		}
+		
+		
+		
+		return numbers;
+	}
+	
+	
 }
