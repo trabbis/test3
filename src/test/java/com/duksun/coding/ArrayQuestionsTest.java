@@ -51,6 +51,21 @@ public class ArrayQuestionsTest {
 		int[] orig = new int[] {1,4,5,2,7};
 		int[] sorted = ArrayQuestions.arrayPrimitiveSortingReverse(orig);
 		assertEquals(7, sorted[0]);
+	}
+	
+	@Test
+	public void rotationArrayTimes() {
+		int[] orig = new int[] {1,2,3,4};
+		int times = 1;
+		int[] rotated = ArrayQuestions.rotationArraysTimes(orig, times);
+		assertEquals(4, rotated[0]);
+		
+		orig = new int[] {1,2,3,4};
+		times = 2;
+		rotated = ArrayQuestions.rotationArraysTimes(orig, times);
+		assertEquals(3, rotated[0]);
+		
+		
 		
 	}
 	

@@ -100,11 +100,34 @@ public class ArrayQuestions {
 			numbers[i] = numbers[numbers.length - i -1];
 			numbers[last-i] = temp;
 		}
-		
-		
-		
 		return numbers;
 	}
+
 	
+	public static int[] rotationArraysTimes(int[] data, int k) {
+		//       1,2,3,4
+		//==>  4,1,2,3 (1st time)
+		//==>3,4,1,2   (2nd time)
+		
+		//think about recursive
+		for(int i=1; i<=k; i++) {
+			data = basicRotationArray(data);
+			System.out.println(data.toString());
+		}
+		
+		return data;
+	}
+
+	private static int[] basicRotationArray(int[] data) {
+		int tempLast = data[data.length - 1];
+		
+		for(int last = data.length - 1; 0 <last;last--) {
+			int temp = data[last-1];
+			data[last] = temp;
+		}
+		data[0] = tempLast;
+		
+		return data;
+	}
 	
 }
