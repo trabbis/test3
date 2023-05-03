@@ -1,7 +1,11 @@
 package com.duksun.coding.test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
 
 public class ArrayQuestions {
 	public static void main(String[] args) {
@@ -129,5 +133,60 @@ public class ArrayQuestions {
 		
 		return data;
 	}
+	
+	
+	/*
+	 * that, given an array A of N integers, returns the smallest positive integer
+	 *  (greater than 0) that does not occur in A.
+	 * 
+	 */
+	public static int solution(int[] numbers) {
+		//1. sort integers 
+		//2. put inside set
+		
+		Arrays.sort(numbers);
+		
+		int smallest = numbers[0];
+		int largest = numbers[numbers.length-1];
+		Boolean notInArray = false;
+	
+		List list = new ArrayList<>();
+		for(int i=0; i<numbers.length; i++) {
+			list.add(numbers[i]);
+		}
+		
+		for(int i=0; i<numbers.length; i++) {
+			if (list.contains(smallest)) {
+				smallest++;
+			} else {
+				notInArray = true;
+				break;
+			}
+		}
+		
+		if (!notInArray) {
+			smallest = largest + 1;
+		}		
+
+		return smallest;
+
+		
+		
+//		LinkedHashSet hashSet = new LinkedHashSet<>();
+//		LinkedHashMap<Integer, Integer> hashSet = new LinkedHashMap<>();
+		
+//		
+//		for(int i=1; i<=numbers.length; i++) {
+//			if (!hashSet.get(i)) {
+//				smallest = smallest + 1;
+//				found = true;
+//				break;
+//			} else {
+////				smallest = hashSet.
+//			}
+//		}
+//		
+	}
+	
 	
 }

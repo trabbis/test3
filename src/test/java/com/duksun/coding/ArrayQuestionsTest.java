@@ -64,7 +64,21 @@ public class ArrayQuestionsTest {
 		times = 2;
 		rotated = ArrayQuestions.rotationArraysTimes(orig, times);
 		assertEquals(3, rotated[0]);
+	}
+	
+	@Test
+	public void solution() {
+		int[] orig = new int[] {2,4};
+		assertEquals(3, ArrayQuestions.solution(orig));
+
+		orig = new int[] {-1, -3};
+		assertEquals(-2, ArrayQuestions.solution(orig));
+
+		orig = new int[] {1,2,3};
+		assertEquals(4, ArrayQuestions.solution(orig));
 		
+		orig = new int[] {1,3, 6, 4, 1, 2};
+		assertEquals(5, ArrayQuestions.solution(orig));
 		
 		
 	}
