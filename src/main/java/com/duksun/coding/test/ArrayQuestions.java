@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ArrayQuestions {
 	public static void main(String[] args) {
@@ -155,6 +156,15 @@ public class ArrayQuestions {
 			list.add(numbers[i]);
 		}
 		
+		//Using Stream API
+		//I tried to useing Stream, but that great so far
+		//Below one does not work. In order to make it work, should be list.get(0) first
+//		List<int[]> list = Arrays.asList(numbers);
+//		list = list.stream().sorted().collect(Collectors.toList());
+		
+		//This one works by the way
+//		List<Integer> list = Arrays.stream(numbers).boxed().sorted().collect(Collectors.toList());
+		
 		for(int i=0; i<numbers.length; i++) {
 			if (list.contains(smallest)) {
 				smallest++;
@@ -166,26 +176,12 @@ public class ArrayQuestions {
 		
 		if (!notInArray) {
 			smallest = largest + 1;
-		}		
+		}
+		
+		return (smallest <=0) ? 1: smallest;
+		
+		
 
-		return smallest;
-
-		
-		
-//		LinkedHashSet hashSet = new LinkedHashSet<>();
-//		LinkedHashMap<Integer, Integer> hashSet = new LinkedHashMap<>();
-		
-//		
-//		for(int i=1; i<=numbers.length; i++) {
-//			if (!hashSet.get(i)) {
-//				smallest = smallest + 1;
-//				found = true;
-//				break;
-//			} else {
-////				smallest = hashSet.
-//			}
-//		}
-//		
 	}
 	
 	
