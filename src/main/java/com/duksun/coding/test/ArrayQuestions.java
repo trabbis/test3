@@ -141,29 +141,35 @@ public class ArrayQuestions {
 	 *  (greater than 0) that does not occur in A.
 	 * 
 	 */
-	public static int solution(int[] numbers) {
+	public static int smallestNotInArray(int[] numbers) {
 		//1. sort integers 
 		//2. put inside set
 		
-		Arrays.sort(numbers);
-		
-		int smallest = numbers[0];
-		int largest = numbers[numbers.length-1];
-		Boolean notInArray = false;
-	
-		List list = new ArrayList<>();
-		for(int i=0; i<numbers.length; i++) {
-			list.add(numbers[i]);
-		}
+		//Dealing with arrays directly.
+		//It works, but try to use Stream API for concise code
+//		Arrays.sort(numbers);
+//		
+//		int smallest = numbers[0];
+//		int largest = numbers[numbers.length-1];
+//		Boolean notInArray = false;
+//	
+//		List list = new ArrayList<>();
+//		for(int i=0; i<numbers.length; i++) {
+//			list.add(numbers[i]);
+//		}
 		
 		//Using Stream API
-		//I tried to useing Stream, but that great so far
+		//I tried to using Stream, but that great so far
 		//Below one does not work. In order to make it work, should be list.get(0) first
 //		List<int[]> list = Arrays.asList(numbers);
 //		list = list.stream().sorted().collect(Collectors.toList());
 		
 		//This one works by the way
-//		List<Integer> list = Arrays.stream(numbers).boxed().sorted().collect(Collectors.toList());
+		List<Integer> list = Arrays.stream(numbers).boxed().sorted().collect(Collectors.toList());
+		
+		int smallest = list.get(0);
+		int largest = list.get(list.size()-1);
+		Boolean notInArray = false;
 		
 		for(int i=0; i<numbers.length; i++) {
 			if (list.contains(smallest)) {

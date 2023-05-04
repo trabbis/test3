@@ -67,9 +67,9 @@ public class ArrayQuestionsTest {
 	}
 	
 	@Test
-	public void solution() {
-		int[] orig = new int[] {2,4,7,8};
-		assertEquals(3, ArrayQuestions.solution(orig));
+	public void smallestNotInArray() {
+		int[] orig = new int[] {4,2,7,8};
+		assertEquals(3, ArrayQuestions.smallestNotInArray(orig));
 
 //		orig = new int[] {-1, -3};
 //		assertEquals(1, ArrayQuestions.solution(orig));
