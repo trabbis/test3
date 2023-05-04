@@ -96,16 +96,27 @@ public class ArrayQuestions {
 		//So we will do ascending first and flip over
 		//1. sorting in ascending order first
 		//2. reverse manually
-		Arrays.sort(numbers);
-
-		int last = numbers.length -1;
-		int middle = numbers.length/2;
-		for(int i=0;i < middle;i++) {
-			int temp = numbers[i];
-			numbers[i] = numbers[numbers.length - i -1];
-			numbers[last-i] = temp;
-		}
-		return numbers;
+//		Arrays.sort(numbers);
+//
+//		int last = numbers.length -1;
+//		int middle = numbers.length/2;
+//		for(int i=0;i < middle;i++) {
+//			int temp = numbers[i];
+//			numbers[i] = numbers[numbers.length - i -1];
+//			numbers[last-i] = temp;
+//		}
+//		return numbers;
+		
+		//Another option is using Stream API
+		List<Integer> reversedList = Arrays.stream(numbers).
+									boxed().
+									sorted(Collections.reverseOrder()).
+									collect(Collectors.toList());
+		
+		int[] reversedArrays = reversedList.stream().mapToInt(Integer::intValue).toArray();
+		
+		return reversedArrays;
+		
 	}
 
 	
