@@ -5,8 +5,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ArrayQuestions {
 	public static void main(String[] args) {
@@ -27,14 +29,33 @@ public class ArrayQuestions {
 	
 	public static String[] reverseArray(String[] strings) {
 		
-		int size = strings.length;
-		String[] newStrings = new String[size];
+//		int size = strings.length;
+//		String[] newStrings = new String[size];
+//		
+//		for(int i=0;i<size;i++) {
+//			newStrings[size-i-1] = strings[i];
+//		}
+//		return newStrings;
 		
-		for(int i=0;i<size;i++) {
-			newStrings[size-i-1] = strings[i];
+		//You can think of Stream API, but for String sorting, they are sorted by alphabetical order
+		//So, it won't meet requirement
+//		List<String> reversed = Arrays.asList(strings).stream().sorted(Collections.reverseOrder()).
+//					collect(Collectors.toList());
+		
+		//Another way is using LinkedList and read it back
+		LinkedList<String> list = new LinkedList<String>();
+		for(int i=0;i<strings.length;i++) {
+			list.add(strings[i]);
 		}
 		
-		return newStrings;
+		LinkedList<String> reversed = new LinkedList<String>();
+		for(int i=list.size()-1; i >= 0 ;i--) {
+			reversed.add(list.get(i));
+		}
+		String[] reversedArray = reversed.stream().toArray(String[]::new);
+		return reversedArray;
+		
+		
 	}
 	
 
@@ -211,10 +232,50 @@ public class ArrayQuestions {
 		}
 		
 		return (smallest <=0) ? 1: smallest;
-		
-		
-
 	}
+	
+	
+	public static int findLargest(int[] numbers) {
+		
+		//{1,2,-1, -2};
+		//sort first -2,-1,1,2
+		//adding should be zero (until less than zero)
+		
+		if (numbers == null) {
+			return 0;
+		}
+		
+		
+		List<Integer> list = Arrays.stream(numbers).boxed().sorted().collect(Collectors.toList());
+
+		java.util.Set<Integer> found = new java.util.HashSet<Integer>();
+		
+		for(int i=0;i<list.size();i++) {
+			if (list.get(i) < 0) {
+				for(int j=i+1;j<list.size();j++) {
+					if (list.get(i) + list.get(j) == 0) {
+						found.add(list.get(j));
+						break;
+					}
+				}
+			} else {
+				break;
+			}
+		}
+		
+		if (found.isEmpty()) {
+			return 0;
+		} else {
+			long count = found.stream().count();
+			Stream<Integer> stream = found.stream();
+			Integer last = stream.skip(count - 1).findFirst().get();
+			return last;
+		}
+		
+	}
+	
+
+	
 	
 	
 }

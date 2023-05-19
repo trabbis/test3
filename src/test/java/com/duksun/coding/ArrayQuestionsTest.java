@@ -83,4 +83,19 @@ public class ArrayQuestionsTest {
 		
 	}
 	
+	@Test
+	public void findLargest() {
+//		int[] org = new int[] {1,1, 2, -1, 2, -1};
+//		ArrayQuestions.findLargest(org);
+		
+//		int[] org = new int[] {3,2,-2,5,-3};
+//		ArrayQuestions.findLargest(org);
+		
+//		int[] org = new int[] {1,2,3,-4};
+//		ArrayQuestions.findLargest(org);
+		
+		int[] org = new int[] {};
+		ArrayQuestions.findLargest(org);
+	}
+	
 }
