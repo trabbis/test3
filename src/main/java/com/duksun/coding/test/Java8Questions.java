@@ -3,7 +3,9 @@ package com.duksun.coding.test;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Java8Questions {
@@ -111,7 +113,16 @@ public class Java8Questions {
 		Integer multiply = fc1.multiply(arg1, arg2);
 		
 		return multiply;
+	}
+
+
+	//Too much
+	public static void countDuplicates(String args) {
 		
+		Map<String, Long> count = Arrays.asList(args.split(" ")).stream()
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+				
+		System.out.println(count);
 		
 	}
 	

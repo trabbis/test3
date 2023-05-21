@@ -84,9 +84,14 @@ public class Java8QuestionsTest {
 	
 	@Test
 	public void functionalInterfaceTesting() {
-		
-		
 		assertEquals(42, Java8Questions.functionalInterfaceTesting(6,7).intValue());
+		
+	}
+	
+	@Test
+	public void countingDuplicates() {
+		String arg = "welcome hello welcome hello hi ni welcome";
+		Java8Questions.countDuplicates(arg);
 		
 	}
 	
