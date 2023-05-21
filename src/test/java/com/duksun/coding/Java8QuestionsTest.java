@@ -37,11 +37,32 @@ public class Java8QuestionsTest {
 		list.add(new Employee(1, "test1"));
 		list.add(new Employee(21, "test21"));
 		
-		
-		
 		assertEquals(1, Java8Questions.sortedByEmployeeId(list).get(0).getEmpId());
+	}
+	
+	@Test
+	public void sortBySalaryDescOrder() {
+		List<Employee> list = new ArrayList<Employee>();
+		list.add(new Employee(5, "test5", 5L));
+		list.add(new Employee(1, "test1", 1L));
+		list.add(new Employee(15, "test15", 15L));
+		list.add(new Employee(8, "test8", 8L));
 		
+		assertEquals(15L, Java8Questions.sortBySalaryDescOrder(list).get(0).getSalary());
+	}
+	
+	@Test
+	public void sortByTop3Salaries() {
+		List<Employee> list = new ArrayList<Employee>();
+		list.add(new Employee(5, "test5", 5L));
+		list.add(new Employee(1, "test1", 1L));
+		list.add(new Employee(15, "test15", 15L));
+		list.add(new Employee(8, "test8", 8L));
+		
+		assertEquals(5L, Java8Questions.sortByTop3Salaries(list).get(2).getSalary());
 		
 	}
 	
 }
+
+
