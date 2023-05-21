@@ -74,6 +74,18 @@ public class Java8QuestionsTest {
 		assertEquals(1L, Java8Questions.salariesLessThan3rdSalary(list).get(0).getSalary());
 	}
 	
+	
+	@Test
+	public void findOutDuplicateElements() {
+		Integer[] arr = new Integer[] {1,2,2,2,3,4,5,5};
+		
+		
+		assertEquals(2, Java8Questions.duplicateElements(arr).size()); //should return 2,5
+		
+		
+		
+		
+	}
 }
 
 

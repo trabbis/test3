@@ -1,8 +1,9 @@
 package com.duksun.coding.test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Java8Questions {
@@ -89,6 +90,18 @@ public class Java8Questions {
 				.collect(Collectors.toList());
 
 		return list;
+	}
+
+
+	public static Set<Integer> duplicateElements(Integer[] args) {
+		// {1,2,2,2,3,4,5,5};
+		
+		List<Integer> list = Arrays.asList(args);
+		Set<Integer> set = new HashSet<>();
+		
+		Set<Integer> set2 = list.stream().filter(x->!set.add(x)).collect(Collectors.toSet()); //.forEach(System.out::println);
+		return set2;
+		
 	}
 	
 }
