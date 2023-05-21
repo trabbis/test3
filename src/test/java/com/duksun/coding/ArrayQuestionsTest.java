@@ -36,6 +36,7 @@ public class ArrayQuestionsTest {
 	public void factorial() {
 		assertEquals(2, ArrayQuestions.factorial(2));
 		assertEquals(6, ArrayQuestions.factorial(3));
+		assertEquals(6*4, ArrayQuestions.factorial(4));
 		assertEquals(720, ArrayQuestions.factorial(6));
 	}
 	
