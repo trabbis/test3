@@ -104,4 +104,16 @@ public class Java8Questions {
 		
 	}
 	
+	
+	public static Integer functionalInterfaceTesting(Integer arg1, Integer arg2) {
+		
+		FunctionalInterface1 fc1 = (a, b) -> a * b;
+		Integer multiply = fc1.multiply(arg1, arg2);
+		
+		return multiply;
+		
+		
+	}
+	
+	
 }

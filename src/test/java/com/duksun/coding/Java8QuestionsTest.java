@@ -79,13 +79,17 @@ public class Java8QuestionsTest {
 	public void findOutDuplicateElements() {
 		Integer[] arr = new Integer[] {1,2,2,2,3,4,5,5};
 		
-		
 		assertEquals(2, Java8Questions.duplicateElements(arr).size()); //should return 2,5
+	}
+	
+	@Test
+	public void functionalInterfaceTesting() {
 		
 		
-		
+		assertEquals(42, Java8Questions.functionalInterfaceTesting(6,7).intValue());
 		
 	}
+	
 }
 
 
