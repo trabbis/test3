@@ -67,5 +67,28 @@ public class Java8Questions {
 		return list;
 		
 	}
+	
+	public static List<Employee> salariesLessThan3rdSalary(List<Employee> arg) {
 
+//		List<Employee> list = arg.stream().sorted((a,b) -> b.getSalary().intValue() - a.getSalary().intValue()).collect(Collectors.toList());
+//		
+//		List<Employee> top3 = new ArrayList<Employee>();
+//		//Only return after third record;
+//		for (int i=0;i<list.size();i++) {
+//			if (i < 3) {
+//				continue;
+//			}
+//			top3.add(list.get(i));
+//		}
+//		return top3;
+		
+		
+		//Another option is to use skip()
+		List<Employee> list = arg.stream().sorted((a,b) -> b.getSalary().intValue() - a.getSalary().intValue())
+				.skip(3)
+				.collect(Collectors.toList());
+
+		return list;
+	}
+	
 }

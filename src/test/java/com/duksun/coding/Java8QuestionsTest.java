@@ -63,6 +63,17 @@ public class Java8QuestionsTest {
 		
 	}
 	
+	@Test
+	public void fetchAllEmployeeSalariesLessThan3rdHigestSalary() {
+		List<Employee> list = new ArrayList<Employee>();
+		list.add(new Employee(5, "test5", 5L));
+		list.add(new Employee(1, "test1", 1L));
+		list.add(new Employee(15, "test15", 15L));
+		list.add(new Employee(8, "test8", 8L));
+		
+		assertEquals(1L, Java8Questions.salariesLessThan3rdSalary(list).get(0).getSalary());
+	}
+	
 }
 
 
