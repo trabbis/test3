@@ -4,9 +4,13 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import com.google.common.base.Functions;
 
 public class Java8Questions {
 	public static void main(String[] args) {
@@ -141,10 +145,25 @@ public class Java8Questions {
 		
 	}
 
+	public static List<String> uniqueElements(String args) {
+		
+		List<String> collect = Arrays.asList(args.split(" ")).stream()
+			.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+			.entrySet().stream()
+			.filter(x->x.getValue() <=1)
+			.map(x->x.getKey())
+			.collect(Collectors.toList());
+		
+		//System.out.println(collect);
+		
+		return collect;
+	}
 
 	public static String stringConcatenatieWithComma(String args) {
 		return Arrays.asList(args.split(" ")).stream().map(s -> s.toUpperCase()).collect(Collectors.joining(","));
 	}
+
+
 
 
 	

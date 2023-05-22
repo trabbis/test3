@@ -102,11 +102,17 @@ public class Java8QuestionsTest {
 	}
 	
 	@Test
-	public void countingDuplicates() {
-		String arg = "welcome hello welcome hello hi ni welcome";
+	public void duplicateElements() {
+		String arg = "welcome hello welcome welcome hello hi ni welcome";
 		assertEquals(2, Java8Questions.countDuplicates(arg).size());
 	}
 	
+	@Test
+	public void uniqueElements() {
+		String arg = "welcome hello welcome welcome hello hi ni welcome sayonara";
+		assertEquals(3, Java8Questions.uniqueElements(arg).size());
+		
+	}
 	
 	@Test
 	public void stringConcatenateWithComa() {
