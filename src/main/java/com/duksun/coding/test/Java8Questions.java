@@ -135,6 +135,11 @@ public class Java8Questions {
 	}
 
 
+	public static String stringConcatenatieWithComma(String args) {
+		return Arrays.asList(args.split(" ")).stream().map(s -> s.toUpperCase()).collect(Collectors.joining(","));
+	}
+
+
 	
 	
 }

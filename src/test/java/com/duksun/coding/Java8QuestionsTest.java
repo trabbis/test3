@@ -108,6 +108,15 @@ public class Java8QuestionsTest {
 		
 	}
 	
+	@Test
+	public void stringConcatenateWithComa() {
+		String arg = "welcome hello anyoung nihao bonjour";
+		String concateNatedString = Java8Questions.stringConcatenatieWithComma(arg);
+		
+		assertEquals(true, concateNatedString.contains(","));
+		
+		
+	}
 }
 
 
