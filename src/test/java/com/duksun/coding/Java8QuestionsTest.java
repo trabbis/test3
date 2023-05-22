@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -103,7 +104,7 @@ public class Java8QuestionsTest {
 	
 	@Test
 	public void duplicateElements() {
-		String arg = "welcome hello welcome welcome hello hi ni welcome";
+		String arg = "welcome hello welcome welcome hello hi ni welcome sayonara";
 		assertEquals(2, Java8Questions.countDuplicates(arg).size());
 	}
 	
@@ -111,6 +112,15 @@ public class Java8QuestionsTest {
 	public void uniqueElements() {
 		String arg = "welcome hello welcome welcome hello hi ni welcome sayonara";
 		assertEquals(3, Java8Questions.uniqueElements(arg).size());
+		
+	}
+	
+	@Test
+	public void findFirstUniqueElement() {
+		String arg = "welcome hello welcome welcome hello hi ni welcome sayonara";
+		
+		assertEquals(Optional.of("hi") , Java8Questions.findFirstUniqueElement(arg));
+		
 		
 	}
 	
