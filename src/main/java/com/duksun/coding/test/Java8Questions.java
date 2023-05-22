@@ -94,6 +94,14 @@ public class Java8Questions {
 		return list;
 	}
 
+	public static Long higestSalary(List<Employee> arg) {
+		List<Long> salaries = arg.stream().map(emp -> emp.getSalary()).collect(Collectors.toList());
+		
+		return salaries.stream().mapToLong(x -> x).summaryStatistics().getMax();
+		
+		
+	}
+	
 
 	public static Set<Integer> duplicateElements(Integer[] args) {
 		// {1,2,2,2,3,4,5,5};
@@ -125,6 +133,8 @@ public class Java8Questions {
 		System.out.println(count);
 		
 	}
+
+
 	
 	
 }
