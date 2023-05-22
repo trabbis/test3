@@ -194,6 +194,17 @@ public class Java8Questions {
 	}
 
 
+	public static List<String> startWith2(String[] arg) {
+		List<String> collect = Arrays.asList(arg).stream()
+			.filter(x -> x.startsWith("2"))
+			.collect(Collectors.toList());
+		
+		
+		return collect;
+		
+	}
+
+
 
 
 	

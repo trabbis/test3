@@ -138,7 +138,13 @@ public class Java8QuestionsTest {
 		String[] arg = {"hi", "hello", "anyoung", "iamlongestnow"};
 		
 		assertEquals(Optional.of("iamlongestnow"), Java8Questions.longestString(arg));
-		
+	}
+	
+	
+	@Test
+	public void startWith2() {
+		String[] arg = {"2hi", "hello", "2anyoung", "iamlongestnow"};
+		Java8Questions.startWith2(arg);
 		
 	}
 }
