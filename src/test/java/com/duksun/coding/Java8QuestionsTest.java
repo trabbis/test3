@@ -130,6 +130,14 @@ public class Java8QuestionsTest {
 		String concateNatedString = Java8Questions.stringConcatenatieWithComma(arg);
 		
 		assertEquals(true, concateNatedString.contains(","));
+	}
+	
+	
+	@Test
+	public void longestString() {
+		String[] arg = {"hi", "hello", "anyoung", "iamlongestnow"};
+		
+		assertEquals(Optional.of("iamlongestnow"), Java8Questions.longestString(arg));
 		
 		
 	}

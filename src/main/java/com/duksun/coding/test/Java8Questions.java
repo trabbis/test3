@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Java8Questions {
 	public static void main(String[] args) {
@@ -176,6 +177,20 @@ public class Java8Questions {
 
 	public static String stringConcatenatieWithComma(String args) {
 		return Arrays.asList(args.split(" ")).stream().map(s -> s.toUpperCase()).collect(Collectors.joining(","));
+	}
+
+
+	public static Optional<String> longestString(String[] arg) {
+
+		Optional<String> reduce = Arrays.asList(arg).stream()
+			.reduce((word1,word2) -> word1.length() > word2.length() ? word1 : word2);
+		
+			
+		return reduce;
+		
+	
+		
+		
 	}
 
 
