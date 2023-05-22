@@ -124,13 +124,20 @@ public class Java8Questions {
 	}
 
 
-	//Too much
-	public static void countDuplicates(String args) {
+	//Bit tricky, but take it one at a time
+	public static List<String> countDuplicates(String args) {
 		
-		Map<String, Long> count = Arrays.asList(args.split(" ")).stream()
-				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+		List<String> collect = Arrays.asList(args.split(" ")).stream()
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting())) //Group by key returning Map
+				.entrySet().stream() //Getting entrySet of Map
+				.filter(x -> x.getValue() > 1) //filtering only more than one occurrences
+//				.map(Map.Entry::getKey) //Now only getting keys from Map. Same as below syntax
+				.map(x -> x.getKey())
+				.collect(Collectors.toList());
 				
-		System.out.println(count);
+		//System.out.println(collect); //type in sysout
+		
+		return collect;
 		
 	}
 

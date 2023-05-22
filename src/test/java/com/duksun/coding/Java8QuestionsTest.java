@@ -104,9 +104,9 @@ public class Java8QuestionsTest {
 	@Test
 	public void countingDuplicates() {
 		String arg = "welcome hello welcome hello hi ni welcome";
-		Java8Questions.countDuplicates(arg);
-		
+		assertEquals(2, Java8Questions.countDuplicates(arg).size());
 	}
+	
 	
 	@Test
 	public void stringConcatenateWithComa() {
