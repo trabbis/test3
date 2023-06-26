@@ -19,7 +19,8 @@ public class Java8Questions {
 	public static List<Integer> returnOnlyEven(Integer[] arg) {
 		
 		List<Integer> list = Arrays.asList(arg);
-		list = list.stream().filter(p -> p % 2 == 0).toList();
+		//TODO fix this
+//		list = list.stream().filter(p -> p % 2 == 0).toList();
 		return list;
 		
 	}
