@@ -1,13 +1,12 @@
 package com.jackson;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 public class JacksonUtilTest {
 	
@@ -20,26 +19,21 @@ public class JacksonUtilTest {
 
 	    String result = new ObjectMapper().writeValueAsString(bean);
 	    
-	    //TODO fix
-	    assertEquals(result, containsString("My bean"));
-	    assertEquals(result, containsString("{\"attr\":\"value\"}"));
-//	    assertEquals(result, containsString("{\\\"attr\\\":\\\"value\\\"}"));
-	    
+	    assertThat(result, containsString("My bean"));
+	    assertThat(result, containsString("{\"attr\":\"value\"}"));
 	}
 
-	
-	
+	//Bit tricky to understand fully, but basically @JsonRawValue annotation removes any escaping characters
+	//So if we use regular bean with @JsonRawValue annotation, when we serialize, it will contains escape characters
 	@Test
-	public void whenSerializingWithoutJsonRawValue_thenCorrect2()
+	public void whenSerializingWithoutJsonRawValue()
 	  throws JsonProcessingException {
 	 
-	    RawBean bean = new RawBean("My bean", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-//	    <?xml version="1.0" encoding="UTF-8"?>
+		RawBeanWithoutJsonRawValue bean = new RawBeanWithoutJsonRawValue("My bean", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 
-	    //TODO fix
 	    String result = new ObjectMapper().writeValueAsString(bean);
-	    assertEquals(result, containsString("My bean"));
-	    assertEquals(result, containsString("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"));
+	    assertThat(result, containsString("My bean"));
+	    assertThat(result, containsString("<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>"));
 	}
 
 	
