@@ -3,6 +3,11 @@
 	<groupId>test3</groupId>
 	<artifactId>test3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
+	<properties>
+		<graphql-maven-plugin.version>1.18.6</graphql-maven-plugin.version>
+	</properties>
+		
 	<dependencies>
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -14,11 +19,19 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.2.5.RELEASE</version>
 		</dependency>
-		<dependency>
+<!--		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.3.1</version>
 		</dependency>
+-->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20200518</version>
+		</dependency>		
+		
+		
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
@@ -61,16 +74,43 @@
 			<version>2.2</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+<!--		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 			<version>4.3.3</version>
 		</dependency>
+		
+-->		
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.3.6</version>
+<!--			<version>4.3.6</version>
+-->			<version>4.5.12</version>			
 		</dependency>
+		
+		
+        <dependency>
+            <groupId>org.springframework.graphql</groupId>
+            <artifactId>spring-graphql</artifactId>
+            <version>1.2.3</version>
+        </dependency>		
+        
+        
+        
+
+<!--        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+		    <version>3.13.0</version>
+        </dependency>
+-->		
+		
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.14.0</version>
+		</dependency>
+		
 		<!-- <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-core</artifactId>
@@ -120,6 +160,16 @@
 			<version>5.5.2</version>
 			<scope>test</scope>
 		</dependency>
+		
+		
+	<!-- Dependencies for GraphQL -->
+		<dependency>
+			<groupId>com.graphql-java-generator</groupId>
+			<artifactId>graphql-java-runtime</artifactId>
+			<version>1.18</version>
+		</dependency>
+				
+		
 	</dependencies>
 	<build>
 		<plugins>
@@ -138,6 +188,71 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			
+			
+<!--			<plugin>
+				<groupId>com.graphql-java-generator</groupId>
+				<artifactId>graphql-maven-plugin</artifactId>
+				<version>${graphql-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generateClientCode</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<packageName>org.forum.client</packageName>
+					<customScalars>
+						
+								<customScalar>
+									<graphQLTypeName>Base64String</graphQLTypeName>
+									<javaType>byte[]</javaType>
+									<graphQLScalarTypeStaticField>com.graphql_java_generator.customscalars.GraphQLScalarTypeBase64String.GraphQLBase64String</graphQLScalarTypeStaticField>
+								</customScalar>
+								<customScalar>
+									<graphQLTypeName>CustomId</graphQLTypeName>
+									<javaType>com.generated.graphql.samples.customscalar.CustomId</javaType>
+									<graphQLScalarTypeStaticField>com.generated.graphql.samples.customscalar.GraphQLScalarTypeCustomId.CustomIdScalarType</graphQLScalarTypeStaticField>
+								</customScalar>
+								<customScalar>
+									<graphQLTypeName>Date</graphQLTypeName>
+									<javaType>java.util.Date</javaType>
+									<graphQLScalarTypeStaticField>com.graphql_java_generator.customscalars.GraphQLScalarTypeDate.Date</graphQLScalarTypeStaticField>
+								</customScalar>
+								<customScalar>
+									<graphQLTypeName>DateTime</graphQLTypeName>
+									<javaType>java.time.OffsetDateTime</javaType>
+									<graphQLScalarTypeStaticField>graphql.scalars.ExtendedScalars.DateTime</graphQLScalarTypeStaticField>
+								</customScalar>
+								<customScalar>
+									<graphQLTypeName>else</graphQLTypeName>
+									<javaType>java.lang.String</javaType>
+									<graphQLScalarTypeGetter>org.allGraphQLCases.demo.GraphQLScalarTypeElse.getElseScalar()</graphQLScalarTypeGetter>
+								</customScalar>
+								<customScalar>
+									<graphQLTypeName>Long</graphQLTypeName>
+									<javaType>java.lang.Long</javaType>
+									<graphQLScalarTypeStaticField>graphql.scalars.ExtendedScalars.GraphQLLong</graphQLScalarTypeStaticField>
+								</customScalar>
+								<customScalar>
+									<graphQLTypeName>NonNegativeInt</graphQLTypeName>
+									<javaType>java.lang.Integer</javaType>
+									<graphQLScalarTypeStaticField>graphql.scalars.ExtendedScalars.NonNegativeInt</graphQLScalarTypeStaticField>
+								</customScalar>
+						
+						
+					</customScalars>
+					<copyRuntimeSources>false</copyRuntimeSources>
+					<generateDeprecatedRequestResponse>false</generateDeprecatedRequestResponse>
+					<separateUtilityClasses>true</separateUtilityClasses>
+					<skipGenerationIfSchemaHasNotChanged>true</skipGenerationIfSchemaHasNotChanged>
+				</configuration>
+			</plugin>
+-->			
+			
+						
+			
 		</plugins>
 	</build>
 </project>
