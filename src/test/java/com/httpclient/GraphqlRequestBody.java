@@ -3,13 +3,13 @@ package com.httpclient;
 public class GraphqlRequestBody {
 
 	private String query;
-	private Object variables;
+	private String variables;
 
 	public GraphqlRequestBody() {
 		super();
 	}
 
-	public GraphqlRequestBody(String query, Object variables) {
+	public GraphqlRequestBody(String query, String variables) {
 		super();
 		this.query = query;
 		this.variables = variables;
@@ -23,11 +23,11 @@ public class GraphqlRequestBody {
 		this.query = query;
 	}
 
-	public Object getVariables() {
+	public String getVariables() {
 		return variables;
 	}
 
-	public void setVariables(Object variables) {
+	public void setVariables(String variables) {
 		this.variables = variables;
 	}
 

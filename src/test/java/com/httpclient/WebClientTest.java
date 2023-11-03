@@ -1,12 +1,16 @@
 package com.httpclient;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import graphql.kickstart.spring.webclient.boot.GraphQLWebClient;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
@@ -14,7 +18,47 @@ import reactor.netty.http.client.HttpClient;
 
 public class WebClientTest {
 
-	//TODO3
+	@Test
+	public void springGraphQLWebClient() throws IOException {
+
+		String url = "https://3.223.122.114/content/_cq_graphql/dealercentral/endpoint.json";
+			
+		SslContext sslContext = SslContextBuilder
+	            .forClient()
+	            .trustManager(InsecureTrustManagerFactory.INSTANCE)
+	            .build();
+	    HttpClient httpClient = HttpClient.create().secure(t -> t.sslContext(sslContext));
+	    
+	    WebClient webClient = WebClient.builder()
+	    						.baseUrl(url)
+	    						.clientConnector(new ReactorClientHttpConnector(httpClient)).build();
+	    
+		ObjectMapper objectMapper = new ObjectMapper();
+	    
+	    GraphQLWebClient graphqlClient = GraphQLWebClient.newInstance(webClient, objectMapper);
+
+	    //if expecting a single entity (not array)
+	    Map<String, Object> variables = new HashMap<String, Object>();
+	    variables.put("code", "42120");
+	    
+	    DealersGraphQLResponse entity = graphqlClient.post("dealers.graphql", variables, DealersGraphQLResponse.class)
+	                .block();   
+
+	                
+	    //if expecting a list of entity (array)
+//	    var response = graphqlClient.post(GraphQLRequest.builder().resource("query1.graphql")
+//	            .variables(Map.of("RefNumber", "A7EED900-9BB4-486F-9F7C-2136E61E2278")).build())
+//	                    .block();   
+//	    List<MyEntity> entityList = response.getFirstList(MyEntity.class);
+	    
+	    
+		  System.out.println(entity);
+
+	}
+	
+
+	
+	//TODO3 works without variables
 	@Test
 	public void testingWithSpringWebClientWithToyotaEndpoint() throws IOException {
 

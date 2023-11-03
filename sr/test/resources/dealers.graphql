@@ -1,5 +1,6 @@
+query queryName ($code : String)
 {
- dcDealerList(filter: { dealerCode: { _expressions: { value: "42120" } } }) { 
+ dcDealerList(filter: { dealerCode: { _expressions: { value: $code } } }) { 
 	items { 
 		departmentReference { 
 			department  
