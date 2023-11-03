@@ -1,0 +1,14 @@
+{
+ dcDealerList(filter: { dealerCode: { _expressions: { value: "42120" } } }) { 
+	items { 
+		departmentReference { 
+			department  
+			emailAddress 
+			phoneNumber 
+			city 
+			postalCode 
+			province  
+		}  
+	  }  
+   }  
+}

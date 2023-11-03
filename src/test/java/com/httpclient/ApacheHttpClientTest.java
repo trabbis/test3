@@ -1,9 +1,11 @@
 package com.httpclient;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -30,12 +32,17 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import org.springframework.graphql.client.GraphQlClient;
-import org.springframework.graphql.client.HttpGraphQlClient;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 
 //import net.minidev.json.JSONObject;
 
@@ -43,36 +50,18 @@ public class ApacheHttpClientTest {
 
 	private HttpClient httpClient;
 
-	
 	@Test
-	public void testingWithSpringFramework() throws Exception {
-		String url = "https://3.223.122.114/content/_cq_graphql/dealercentral/endpoint.json";
+	public void readResource() throws IOException {
+		  Resource resource = new ClassPathResource("test2.txt");
 
-		WebClient wc = WebClient.create(url);
-
-		GraphQlClient client = HttpGraphQlClient.create(wc);
-
-		String query1 = "{ " 
-			    + " dcDealerList(filter: { dealerCode: { _expressions: { value: $dealerCode } } }) { "
-			    + " items { " 
-			            + " departmentReference { " 
-			                + " emailAddress " 
-			                + " } " 
-			                + " } " 
-			                + " } " 
-			                + " }";
-		
-		Dealers dealers = client.document(query1)
-         .variable("dealerCode", "42120")
-         .retrieve("ipApi_location")
-         .toEntity(Dealers.class)
-         .block();
-		 
-		System.out.println(dealers);
-
-		
+		  File file = resource.getFile();
+		  String content = new String(Files.readAllBytes(file.toPath()));
 		
 	}
+	
+	
+	
+	
 	@Test
 	public void testingWithSample() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, ClientProtocolException, IOException {
 		
@@ -175,7 +164,7 @@ public class ApacheHttpClientTest {
 		//String result = EntityUtils.toString(entity);
 		
 		ObjectMapper mapper = new ObjectMapper();
-		Dealers dealers = mapper.readValue(EntityUtils.toString(entity), new TypeReference<Dealers>(){});
+		DealersGraphQLResponse dealers = mapper.readValue(EntityUtils.toString(entity), new TypeReference<DealersGraphQLResponse>(){});
 		
 		System.out.println(dealers);
 		
@@ -300,7 +289,7 @@ public class ApacheHttpClientTest {
 		    String actualResponse = IOUtils.toString(httpResponse.getEntity().getContent(), StandardCharsets.UTF_8.name());
 		    
 		    ObjectMapper mapper = new ObjectMapper();
-		    Dealers parsedResponse = mapper.readValue(actualResponse, Dealers.class);
+		    DealersGraphQLResponse parsedResponse = mapper.readValue(actualResponse, DealersGraphQLResponse.class);
 			System.out.println("connection goood");
 		    
 		    
