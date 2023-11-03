@@ -3,6 +3,7 @@ package com.httpclient;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -26,7 +27,7 @@ public class WebClientTest {
 	    HttpClient httpClient = HttpClient.create().secure(t -> t.sslContext(sslContext));
 	    
 	    WebClient webClient = WebClient.builder()
-	    						.baseUrl(url)
+//	    						.baseUrl(url)
 	    						.clientConnector(new ReactorClientHttpConnector(httpClient)).build();
 	    
 	    GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
@@ -34,10 +35,12 @@ public class WebClientTest {
 	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers.graphql");
 	    final String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers-variables.graphql");
 	    graphQLRequestBody.setQuery(query);
-	    //graphQLRequestBody.setVariables(variables.replace("dealerCode", "42120"));
+//	    graphQLRequestBody.setVariables(variables.replace("dealerCode", "42120"));
+//	    graphQLRequestBody.setVariables(variables);
 
 	    DealersGraphQLResponse countryDto = webClient.post()
 	        .uri(url)
+//	        .contentType(MediaType.APPLICATION_JSON)
 	        .bodyValue(graphQLRequestBody)
 	        .retrieve()
 	        .bodyToMono(DealersGraphQLResponse.class)
