@@ -2,7 +2,7 @@ package com.httpclient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class DepartmentReference {
     public String emailAddress;
     public String department;
