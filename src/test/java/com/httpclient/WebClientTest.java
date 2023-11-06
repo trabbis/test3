@@ -14,10 +14,12 @@ import graphql.kickstart.spring.webclient.boot.GraphQLWebClient;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
+import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 
 public class WebClientTest {
 
+	//Somehow data is not showing up even though server sent data
 	@Test
 	public void springGraphQLWebClient() throws IOException {
 
@@ -40,11 +42,13 @@ public class WebClientTest {
 	    //if expecting a single entity (not array)
 	    Map<String, Object> variables = new HashMap<String, Object>();
 	    variables.put("code", "42120");
+	    Mono<DealersGraphQLResponse> response = graphqlClient.post("dealers.graphql", variables, DealersGraphQLResponse.class);
+//	    Mono<DealersGraphQLResponse> response = graphqlClient.post("dealers2-without-variable.graphql", DealersGraphQLResponse.class);
 	    
-	    DealersGraphQLResponse entity = graphqlClient.post("dealers.graphql", variables, DealersGraphQLResponse.class)
-	                .block();   
+	    DealersGraphQLResponse dealer = response.block();
+	    
 
-	                
+	    
 	    //if expecting a list of entity (array)
 //	    var response = graphqlClient.post(GraphQLRequest.builder().resource("query1.graphql")
 //	            .variables(Map.of("RefNumber", "A7EED900-9BB4-486F-9F7C-2136E61E2278")).build())
@@ -52,15 +56,15 @@ public class WebClientTest {
 //	    List<MyEntity> entityList = response.getFirstList(MyEntity.class);
 	    
 	    
-		  System.out.println(entity);
+		  System.out.println("dealer..." + dealer);
 
 	}
 	
 
 	
-	//TODO3 works without variables
+	//TODO3 works only without variables
 	@Test
-	public void testingWithSpringWebClientWithToyotaEndpoint() throws IOException {
+	public void usingSpringWebClient() throws IOException {
 
 		String url = "https://3.223.122.114/content/_cq_graphql/dealercentral/endpoint.json";
 			
@@ -78,9 +82,11 @@ public class WebClientTest {
 	    
 	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers.graphql");
 	    final String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers-variables.graphql");
+//	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers2-without-variable.graphql");
+	    
 	    graphQLRequestBody.setQuery(query);
 //	    graphQLRequestBody.setVariables(variables.replace("dealerCode", "42120"));
-//	    graphQLRequestBody.setVariables(variables);
+	    graphQLRequestBody.setVariables(variables);
 
 	    DealersGraphQLResponse countryDto = webClient.post()
 	        .uri(url)
@@ -94,8 +100,9 @@ public class WebClientTest {
 
 	}
 	
+	//Without variable, hard coding, it works, but no data returned
 	@Test
-	public void testingWithSpringWebClient() throws IOException {
+	public void sampleSiteUsingSpringWebClient() throws IOException {
 
 		  
 		String url = "https://countries.trevorblades.com/";
@@ -107,7 +114,7 @@ public class WebClientTest {
 	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("getCountryDetails.graphql");
 	    final String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("variables.graphql");
 	    graphQLRequestBody.setQuery(query);
-	    graphQLRequestBody.setVariables(variables.replace("countryCode", "BE"));
+//	    graphQLRequestBody.setVariables(variables.replace("countryCode", "BE"));
 
 	    CountryDto countryDto = webClient.post()
 	        .uri(url)
@@ -144,6 +151,7 @@ public class WebClientTest {
 		
 	}
 
+	//Delete this later. no use
 	@Test
 	public void testingWithSpringFramework() throws Exception {
 		String url = "https://3.223.122.114/content/_cq_graphql/dealercentral/endpoint.json";

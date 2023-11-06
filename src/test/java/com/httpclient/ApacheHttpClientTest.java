@@ -49,21 +49,61 @@ import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 public class ApacheHttpClientTest {
 
 	private HttpClient httpClient;
-
+	
 	@Test
-	public void readResource() throws IOException {
-		  Resource resource = new ClassPathResource("test2.txt");
+	public void usingHttpClient2() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, ClientProtocolException, IOException {
 
-		  File file = resource.getFile();
-		  String content = new String(Files.readAllBytes(file.toPath()));
+		String url = "https://3.223.122.114/content/_cq_graphql/dealercentral/endpoint.json";
+	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers2-without-variable.graphql");
+//	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers.graphql");
+//	    final String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers-variables.graphql");
+
+	    
+		CredentialsProvider provider = new BasicCredentialsProvider();
+		HttpClientBuilder builder = HttpClientBuilder
+				.create()
+				.setDefaultCredentialsProvider(provider)
+				.disableCookieManagement()
+				.useSystemProperties();
+		builder.setSSLContext(new SSLContextBuilder()
+				.loadTrustMaterial(null, TrustAllStrategy.INSTANCE).build())
+				.setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE);
+		
+		HttpClient client = builder.build();
+		
+		HttpPost httpPost = new HttpPost(url);
+        httpPost.addHeader("Accept", "application/json");
+        httpPost.addHeader("Content-Type", "application/json");
+        
+        
+        Map<String, Object> params = new HashMap<>();
+        params.put("query", query);
+//        params.put("variables", variables);
+        JSONObject jsonobj; 
+        jsonobj = new JSONObject(params);
+        
+		StringEntity input = new StringEntity(jsonobj.toString());
+	    httpPost.setEntity(input);
+	    
+	    HttpResponse response = client.execute(httpPost);
+	    //response.getEntity().getContent();
+		int responseCode = response.getStatusLine().getStatusCode();
+		String responseMsg = response.getStatusLine().toString();
+	    
+		HttpEntity entity = response.getEntity();
+		//String result = EntityUtils.toString(entity);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		DealersGraphQLResponse dealers = mapper.readValue(EntityUtils.toString(entity), new TypeReference<DealersGraphQLResponse>(){});
+		
+		System.out.println(dealers);
+		
+
 		
 	}
-	
-	
-	
-	
+
 	@Test
-	public void testingWithSample() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, ClientProtocolException, IOException {
+	public void usingHttpClient() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, ClientProtocolException, IOException {
 		
 		/* OK
         String query = "{query : " +
@@ -170,6 +210,16 @@ public class ApacheHttpClientTest {
 		
         
 	}
+	
+	@Test
+	public void readResource() throws IOException {
+		  Resource resource = new ClassPathResource("test2.txt");
+
+		  File file = resource.getFile();
+		  String content = new String(Files.readAllBytes(file.toPath()));
+		
+	}
+	
 
 	//@Test
 	public void testingGraphQL2() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, ClientProtocolException, IOException {
