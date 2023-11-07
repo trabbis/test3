@@ -1,0 +1,1 @@
+query queryName ($code : String) {dcDealerList (filter: { dealerCode: { _expressions: { value: $code } } }) {items{departmentReference{department emailAddress phoneNumber city postalCode province}}}}

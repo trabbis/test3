@@ -30,5 +30,15 @@ public class GraphqlRequestBody {
 	public void setVariables(Object variables) {
 		this.variables = variables;
 	}
+	
+	@Override
+	public String toString() {
+		
+		String str = "{ \"query\" : \"" + query + "\", \"variables\" : " + variables + "}";
+		str = str.replaceAll("\\r\\n|\\r|\\n|\\t", " ");
+		return str;
+	}
+
+	
 
 }

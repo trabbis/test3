@@ -34,15 +34,9 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.client.reactive.ReactorClientHttpConnector;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import io.netty.handler.ssl.SslContext;
-import io.netty.handler.ssl.SslContextBuilder;
-import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 
 //import net.minidev.json.JSONObject;
 
@@ -50,13 +44,31 @@ public class ApacheHttpClientTest {
 
 	private HttpClient httpClient;
 	
+	
+	@Test
+	public void usingCustomRequestBody() throws IOException {
+		
+	    GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
+	    
+	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers.graphql");
+	    final String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers-variables.graphql");
+	    
+	    graphQLRequestBody.setQuery(query);
+	    graphQLRequestBody.setVariables(variables);
+	    
+	    System.out.println(graphQLRequestBody.toString());
+	    
+
+	}
+	
+	//finally works, but have to remove tab, return carraige, new line from files
 	@Test
 	public void usingHttpClient2() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, ClientProtocolException, IOException {
 
 		String url = "https://3.223.122.114/content/_cq_graphql/dealercentral/endpoint.json";
-	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers2-without-variable.graphql");
-//	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers.graphql");
-//	    final String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers-variables.graphql");
+//	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealerz-without-variable.graphql");
+	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers.graphql");
+	    final String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers-variables.graphql");
 
 	    
 		CredentialsProvider provider = new BasicCredentialsProvider();
@@ -72,18 +84,35 @@ public class ApacheHttpClientTest {
 		HttpClient client = builder.build();
 		
 		HttpPost httpPost = new HttpPost(url);
-        httpPost.addHeader("Accept", "application/json");
+        //httpPost.addHeader("Accept", "application/json");
         httpPost.addHeader("Content-Type", "application/json");
+
         
-        
-        Map<String, Object> params = new HashMap<>();
-        params.put("query", query);
-//        params.put("variables", variables);
-        JSONObject jsonobj; 
-        jsonobj = new JSONObject(params);
-        
-		StringEntity input = new StringEntity(jsonobj.toString());
+	    GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
+	    
+	    graphQLRequestBody.setQuery(query);
+	    graphQLRequestBody.setVariables(variables);
+	    
+		StringEntity input = new StringEntity(graphQLRequestBody.toString(), ContentType.APPLICATION_JSON);
 	    httpPost.setEntity(input);
+	    
+	    
+//        Map<String, Object> params = new HashMap<>();
+//        params.put("query", query);
+//        params.put("variables", variables);
+//        JSONObject jsonobj = new JSONObject(params);
+//        
+//		StringEntity input = new StringEntity(jsonobj.toString(), ContentType.APPLICATION_JSON);
+//	    httpPost.setEntity(input);
+	
+        
+//	    List<NameValuePair> paramList = new ArrayList<>();
+//        for (String key : params.keySet()) {
+//            paramList.add(new BasicNameValuePair(key, params.get(key)));
+//        }
+//        UrlEncodedFormEntity input = new UrlEncodedFormEntity(paramList,"utf-8");
+//        httpPost.setEntity(input);
+	    
 	    
 	    HttpResponse response = client.execute(httpPost);
 	    //response.getEntity().getContent();
