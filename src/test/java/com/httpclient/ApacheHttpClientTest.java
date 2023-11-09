@@ -84,7 +84,7 @@ public class ApacheHttpClientTest {
 		HttpClient client = builder.build();
 		
 		HttpPost httpPost = new HttpPost(url);
-        //httpPost.addHeader("Accept", "application/json");
+        httpPost.addHeader("Accept", "application/json");
         httpPost.addHeader("Content-Type", "application/json");
 
         

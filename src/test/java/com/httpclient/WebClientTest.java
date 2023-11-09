@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -20,6 +21,7 @@ import reactor.netty.http.client.HttpClient;
 public class WebClientTest {
 
 	//Somehow data is not showing up even though server sent data
+	// ==> not sure why spring framework return after two nodes from root, but it works now
 	@Test
 	public void springGraphQLWebClient() throws IOException {
 
@@ -42,10 +44,9 @@ public class WebClientTest {
 	    //if expecting a single entity (not array)
 	    Map<String, Object> variables = new HashMap<String, Object>();
 	    variables.put("code", "42120");
-	    Mono<DealersGraphQLResponse> response = graphqlClient.post("dealers.graphql", variables, DealersGraphQLResponse.class);
-//	    Mono<DealersGraphQLResponse> response = graphqlClient.post("dealers2-without-variable.graphql", DealersGraphQLResponse.class);
+	    Mono<DcDealerList> response = graphqlClient.post("dealers.graphql", variables, DcDealerList.class);
 	    
-	    DealersGraphQLResponse dealer = response.block();
+	    DcDealerList dealer = response.block();
 	    
 
 	    
@@ -90,7 +91,7 @@ public class WebClientTest {
 
 	    DealersGraphQLResponse countryDto = webClient.post()
 	        .uri(url)
-//	        .contentType(MediaType.APPLICATION_JSON)
+	        .contentType(MediaType.APPLICATION_JSON)
 	        .bodyValue(graphQLRequestBody)
 	        .retrieve()
 	        .bodyToMono(DealersGraphQLResponse.class)
