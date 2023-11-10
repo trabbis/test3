@@ -61,16 +61,12 @@ public class ApacheHttpClientTest {
 
 	}
 	
-	//finally works, but have to remove tab, return carraige, new line from files
+	//finally works, but have to remove tab, return carriage, new line from file content
 	@Test
-	public void usingHttpClient2() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, ClientProtocolException, IOException {
+	public void usingHttpClient() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, ClientProtocolException, IOException {
 
 		String url = "https://3.223.122.114/content/_cq_graphql/dealercentral/endpoint.json";
-//	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealerz-without-variable.graphql");
-	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers.graphql");
-	    final String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers-variables.graphql");
 
-	    
 		CredentialsProvider provider = new BasicCredentialsProvider();
 		HttpClientBuilder builder = HttpClientBuilder
 				.create()
@@ -87,8 +83,54 @@ public class ApacheHttpClientTest {
         httpPost.addHeader("Accept", "application/json");
         httpPost.addHeader("Content-Type", "application/json");
 
-        
 	    GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
+	    
+	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers.graphql");
+	    final String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers-variables.graphql");
+	    
+	    graphQLRequestBody.setQuery(query);
+	    graphQLRequestBody.setVariables(variables);
+	    
+		StringEntity input = new StringEntity(graphQLRequestBody.toString(), ContentType.APPLICATION_JSON);
+	    httpPost.setEntity(input);
+	    
+	    HttpResponse response = client.execute(httpPost);
+	    
+		HttpEntity entity = response.getEntity();
+		
+		ObjectMapper mapper = new ObjectMapper();
+		DealersGraphQLResponse dealers = mapper.readValue(EntityUtils.toString(entity), new TypeReference<DealersGraphQLResponse>(){});
+		
+		System.out.println(dealers);
+		
+	}
+	
+	@Test
+	public void usingHttpClientOldCode2() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, ClientProtocolException, IOException {
+
+		String url = "https://3.223.122.114/content/_cq_graphql/dealercentral/endpoint.json";
+
+		CredentialsProvider provider = new BasicCredentialsProvider();
+		HttpClientBuilder builder = HttpClientBuilder
+				.create()
+				.setDefaultCredentialsProvider(provider)
+				.disableCookieManagement()
+				.useSystemProperties();
+		builder.setSSLContext(new SSLContextBuilder()
+				.loadTrustMaterial(null, TrustAllStrategy.INSTANCE).build())
+				.setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE);
+		
+		HttpClient client = builder.build();
+		
+		HttpPost httpPost = new HttpPost(url);
+        httpPost.addHeader("Accept", "application/json");
+        httpPost.addHeader("Content-Type", "application/json");
+
+	    GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
+	    
+//	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealerz-without-variable.graphql");
+	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers.graphql");
+	    final String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers-variables.graphql");
 	    
 	    graphQLRequestBody.setQuery(query);
 	    graphQLRequestBody.setVariables(variables);
@@ -115,9 +157,6 @@ public class ApacheHttpClientTest {
 	    
 	    
 	    HttpResponse response = client.execute(httpPost);
-	    //response.getEntity().getContent();
-		int responseCode = response.getStatusLine().getStatusCode();
-		String responseMsg = response.getStatusLine().toString();
 	    
 		HttpEntity entity = response.getEntity();
 		//String result = EntityUtils.toString(entity);
@@ -127,12 +166,10 @@ public class ApacheHttpClientTest {
 		
 		System.out.println(dealers);
 		
-
-		
 	}
 
 	@Test
-	public void usingHttpClient() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, ClientProtocolException, IOException {
+	public void usingHttpClientOldCode() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, ClientProtocolException, IOException {
 		
 		/* OK
         String query = "{query : " +

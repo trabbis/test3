@@ -21,9 +21,9 @@ import reactor.netty.http.client.HttpClient;
 public class WebClientTest {
 
 	//Somehow data is not showing up even though server sent data
-	// ==> not sure why spring framework return after two nodes from root, but it works now
+	//Not sure why spring framework decided to return after sub node from root, but it works now
 	@Test
-	public void springGraphQLWebClient() throws IOException {
+	public void usingSpringGraphQLWebClient() throws IOException {
 
 		String url = "https://3.223.122.114/content/_cq_graphql/dealercentral/endpoint.json";
 			
@@ -45,10 +45,9 @@ public class WebClientTest {
 	    Map<String, Object> variables = new HashMap<String, Object>();
 	    variables.put("code", "42120");
 	    Mono<DcDealerList> response = graphqlClient.post("dealers.graphql", variables, DcDealerList.class);
-	    
 	    DcDealerList dealer = response.block();
 	    
-
+	    System.out.println("dealer..." + dealer);
 	    
 	    //if expecting a list of entity (array)
 //	    var response = graphqlClient.post(GraphQLRequest.builder().resource("query1.graphql")
@@ -57,7 +56,6 @@ public class WebClientTest {
 //	    List<MyEntity> entityList = response.getFirstList(MyEntity.class);
 	    
 	    
-		  System.out.println("dealer..." + dealer);
 
 	}
 	

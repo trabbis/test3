@@ -1,0 +1,928 @@
+schema {
+    query: QueryType
+}
+
+scalar Calendar
+scalar Json
+scalar Date
+scalar Time
+
+enum LogOp {
+    AND
+    OR
+}
+
+enum ArrayMode {
+    AT_LEAST_ONCE
+    ALL
+    ALL_OR_EMPTY
+    INSTANCES
+}
+
+enum IDOperator {
+    EQUALS
+    EQUALS_NOT
+    STARTS_WITH
+}
+
+enum StringOperator {
+    EQUALS
+    EQUALS_NOT
+    CONTAINS
+    CONTAINS_NOT
+}
+
+enum IntOperator {
+    EQUAL
+    UNEQUAL
+    GREATER
+    GREATER_EQUAL
+    LOWER
+    LOWER_EQUAL
+}
+
+enum FloatOperator {
+    EQUAL
+    UNEQUAL
+    GREATER
+    GREATER_EQUAL
+    LOWER
+    LOWER_EQUAL
+}
+
+enum BooleanOperator {
+    EQUALS
+}
+
+enum CalendarOperator {
+    AT
+    NOT_AT
+    BEFORE
+    AT_OR_BEFORE
+    AFTER
+    AT_OR_AFTER
+}
+
+enum DateOperator {
+    AT
+    NOT_AT
+    BEFORE
+    AT_OR_BEFORE
+    AFTER
+    AT_OR_AFTER
+}
+
+enum TimeOperator {
+    AT
+    NOT_AT
+    BEFORE
+    AT_OR_BEFORE
+    AFTER
+    AT_OR_AFTER
+}
+
+type StringMetadata {
+    name: String!
+    value: String!
+}
+
+type StringArrayMetadata {
+    name: String!
+    value: [String]!
+}
+
+type IntMetadata {
+    name: String!
+    value: Int!
+}
+
+type IntArrayMetadata {
+    name: String!
+    value: [Int]!
+}
+
+type FloatMetadata {
+    name: String!
+    value: Float!
+}
+
+type FloatArrayMetadata {
+    name: String!
+    value: [Float]!
+}
+
+type BooleanMetadata {
+    name: String!
+    value: Boolean!
+}
+
+type BooleanArrayMetadata {
+    name: String!
+    value: [Boolean]!
+}
+
+type CalendarMetadata {
+    name: String!
+    value: Calendar!
+}
+
+type CalendarArrayMetadata {
+    name: String!
+    value: [Calendar]!
+}
+
+type TypedMetaData {
+    stringMetadata: [StringMetadata]!
+    stringArrayMetadata: [StringArrayMetadata]!
+    intMetadata: [IntMetadata]!
+    intArrayMetadata: [IntArrayMetadata]!
+    floatMetadata: [FloatMetadata]!
+    floatArrayMetadata: [FloatArrayMetadata]!
+    booleanMetadata: [BooleanMetadata]!
+    booleanArrayMetadata: [BooleanArrayMetadata]!
+    calendarMetadata: [CalendarMetadata]!
+    calendarArrayMetadata: [CalendarArrayMetadata]!
+}
+
+type MultiFormatString {
+    html: String
+    markdown: String
+    plaintext: String
+    json: Json
+}
+
+type ModelInfo {
+    _path: ID
+    title: String
+}
+
+type DcDepartmentModelResults {
+    items: [DcDepartmentModel]!
+    _references: [Reference]
+}
+
+type DcDepartmentModel {
+    _path: ID
+    department: String
+    emailAddress: String
+    phoneNumber: String
+    faxNumber: String
+    address: MultiFormatString
+    city: String
+    province: String
+    postalCode: String
+    monday: DcDayModel
+    tuesday: DcDayModel
+    wednesday: DcDayModel
+    thursday: DcDayModel
+    friday: DcDayModel
+    saturday: DcDayModel
+    sunday: DcDayModel
+    additionalDeptInfo: MultiFormatString
+    _metadata: TypedMetaData
+    _variations: [String]
+    _model: ModelInfo
+}
+
+type DcDepartmentModelResult {
+    item: DcDepartmentModel!
+    _references: [Reference]
+}
+
+type DcServiceLexusModelResults {
+    items: [DcServiceLexusModel]!
+    _references: [Reference]
+}
+
+type DcServiceLexusModel {
+    _path: ID
+    dealerLabourRate: String
+    reflectionDetailing: Boolean
+    lexusTireCentre: Boolean
+    alternateTransportation: Boolean
+    lifestyleCollection: Boolean
+    genuineAccessories: Boolean
+    certifiedCollisionCentre: Boolean
+    newVehicleInventory: Boolean
+    englishUrlInventory: String
+    frenchUrlInventory: String
+    onlineServiceAppointmentBooking: Boolean
+    englishUrlAppointment: String
+    frenchUrlAppointment: String
+    preOwnedVehicleSales: Boolean
+    lexusCertifiedPreOwnedVehicles: Boolean
+    authorizedLexusService: Boolean
+    genuineLexusParts: Boolean
+    expressService: Boolean
+    _metadata: TypedMetaData
+    _variations: [String]
+    _model: ModelInfo
+}
+
+type DcServiceLexusModelResult {
+    item: DcServiceLexusModel!
+    _references: [Reference]
+}
+
+type DcLaborModelResults {
+    items: [DcLaborModel]!
+    _references: [Reference]
+}
+
+type DcLaborModel {
+    _path: ID
+    labourRateDealer: String
+    labourRateNational: String
+    labourRateProvincial: String
+    labourRateByProvince: [String]
+    _metadata: TypedMetaData
+    _variations: [String]
+    _model: ModelInfo
+}
+
+type DcLaborModelResult {
+    item: DcLaborModel!
+    _references: [Reference]
+}
+
+type DcDayModelResults {
+    items: [DcDayModel]!
+    _references: [Reference]
+}
+
+type DcDayModel {
+    _path: ID
+    open: String
+    close: String
+    _metadata: TypedMetaData
+    _variations: [String]
+    _model: ModelInfo
+}
+
+type DcDayModelResult {
+    item: DcDayModel!
+    _references: [Reference]
+}
+
+type DcDealershipModelResults {
+    items: [DcDealershipModel]!
+    _references: [Reference]
+}
+
+type DcDealershipModel {
+    _path: ID
+    dealerCode: String
+    nameOfDealership: String
+    website: String
+    address: MultiFormatString
+    city: String
+    province: String
+    postalCode: String
+    phoneNumber: String
+    faxNumber: String
+    tollFreeNumber: String
+    effectiveDate: String
+    expiryDate: String
+    _metadata: TypedMetaData
+    _variations: [String]
+    _model: ModelInfo
+}
+
+type DcDealershipModelResult {
+    item: DcDealershipModel!
+    _references: [Reference]
+}
+
+type DcStaffingModelResults {
+    items: [DcStaffingModel]!
+    _references: [Reference]
+}
+
+type DcStaffingModel {
+    _path: ID
+    firstName: String
+    lastName: String
+    department: String
+    phoneNumber: String
+    extension: String
+    cellularNumber: String
+    faxNumber: String
+    email: String
+    jobTitle: String
+    displayOrder: String
+    _metadata: TypedMetaData
+    _variations: [String]
+    _model: ModelInfo
+}
+
+type DcStaffingModelResult {
+    item: DcStaffingModel!
+    _references: [Reference]
+}
+
+type DcDealerModelResults {
+    items: [DcDealerModel]!
+    _references: [Reference]
+}
+
+type DcDealerModel {
+    _path: ID
+    dealerCode: String
+    dealershipFragmentPaths: DcDealershipModel
+    mappingFragmentPaths: DcMappingModel
+    departmentReference: [DcDepartmentModel]
+    serviceToyotaReference: DcServiceToyotaModel
+    serviceLexusReference: DcServiceLexusModel
+    staffingReference: [DcStaffingModel]
+    labourReference: DcLaborModel
+    _metadata: TypedMetaData
+    _variations: [String]
+    _model: ModelInfo
+}
+
+type DcDealerModelResult {
+    item: DcDealerModel!
+    _references: [Reference]
+}
+
+type DcServiceToyotaModelResults {
+    items: [DcServiceToyotaModel]!
+    _references: [Reference]
+}
+
+type DcServiceToyotaModel {
+    _path: ID
+    dealerLabourRate: String
+    maintenanceMenu: Boolean
+    certifiedUsedVehicles: Boolean
+    usedVehicles: Boolean
+    toyotaTouch: Boolean
+    deluxeCarsTrucksCheckbox: Boolean
+    deluxeCarsTrucks: String
+    premiumCarsTruckscheckbox: Boolean
+    premiumCarsTrucks: String
+    ultimateCarsTrucksCheckbox: Boolean
+    ultimateCarsTrucks: String
+    deluxSuvVanCheckbox: Boolean
+    deluxeSuvsVans: String
+    premiumSuvVansCheckbox: Boolean
+    premiumSuvsVans: String
+    ultimateSuvVansCheckbox: Boolean
+    ultimateSuvsVans: String
+    expressService: Boolean
+    newVehicleInventory: Boolean
+    englishUrlInventory: String
+    frenchUrlInventory: String
+    onlineServiceAppointmentBooking: Boolean
+    englishUrlAppointment: String
+    frenchUrlAppointment: String
+    authorizedSupraDealer: Boolean
+    authorizedMiraiDealer: Boolean
+    authorizedBx4xDealer: Boolean
+    kintoShare: Boolean
+    _metadata: TypedMetaData
+    _variations: [String]
+    _model: ModelInfo
+}
+
+type DcServiceToyotaModelResult {
+    item: DcServiceToyotaModel!
+    _references: [Reference]
+}
+
+type DcMappingModelResults {
+    items: [DcMappingModel]!
+    _references: [Reference]
+}
+
+type DcMappingModel {
+    _path: ID
+    searchName: String
+    latitudeCoordinates: String
+    longitudeCoordinates: String
+    _metadata: TypedMetaData
+    _variations: [String]
+    _model: ModelInfo
+}
+
+type DcMappingModelResult {
+    item: DcMappingModel!
+    _references: [Reference]
+}
+
+type PageRef {
+    type: String
+    _path: ID
+    _authorUrl: String
+    _publishUrl: String
+}
+
+type ImageRef {
+    type: String
+    _path: ID
+    _authorUrl: String
+    _publishUrl: String
+    width: Int
+    height: Int
+    mimeType: String
+}
+
+type MultimediaRef {
+    type: String
+    _path: ID
+    _authorUrl: String
+    _publishUrl: String
+    size: Int
+    format: String
+}
+
+type ArchiveRef {
+    type: String
+    _path: ID
+    _authorUrl: String
+    _publishUrl: String
+    size: Int
+    format: String
+}
+
+type DocumentRef {
+    type: String
+    _path: ID
+    _authorUrl: String
+    _publishUrl: String
+    size: Int
+    author: String
+    format: String
+}
+
+input IDFilterExpression {
+    value: ID
+    _operator: IDOperator = EQUALS
+}
+
+input IDFilter {
+    _logOp: LogOp = AND
+    _expressions: [IDFilterExpression]!
+}
+
+input IDArrayFilterExpression {
+    value: ID
+    values: [ID]
+    _apply: ArrayMode
+    _operator: IDOperator = EQUALS
+}
+
+input IDArrayFilter {
+    _logOp: LogOp = AND
+    _expressions: [IDArrayFilterExpression]!
+}
+
+input StringFilterExpression {
+    value: String
+    _operator: StringOperator = EQUALS
+    _ignoreCase: Boolean
+}
+
+input StringFilter {
+    _logOp: LogOp = AND
+    _expressions: [StringFilterExpression]!
+}
+
+input StringArrayFilterExpression {
+    value: String
+    values: [String]
+    _apply: ArrayMode
+    _operator: StringOperator = EQUALS
+}
+
+input StringArrayFilter {
+    _logOp: LogOp = AND
+    _expressions: [StringArrayFilterExpression]!
+}
+
+input IntFilterExpression {
+    value: Int
+    _operator: IntOperator = EQUAL
+}
+
+input IntFilter {
+    _logOp: LogOp = AND
+    _expressions: [IntFilterExpression]!
+}
+
+input IntArrayFilterExpression {
+    value: Int
+    values: [Int]
+    _apply: ArrayMode
+    _operator: IntOperator = EQUAL
+}
+
+input IntArrayFilter {
+    _logOp: LogOp = AND
+    _expressions: [IntArrayFilterExpression]!
+}
+
+input FloatFilterExpression {
+    value: Float
+    _operator: FloatOperator = EQUAL
+    _sensitiveness: Float
+}
+
+input FloatFilter {
+    _logOp: LogOp = AND
+    _expressions: [FloatFilterExpression]!
+}
+
+input FloatArrayFilterExpression {
+    value: Float
+    values: [Float]
+    _apply: ArrayMode
+    _operator: FloatOperator = EQUAL
+    _sensitiveness: Float
+}
+
+input FloatArrayFilter {
+    _logOp: LogOp = AND
+    _expressions: [FloatArrayFilterExpression]!
+}
+
+input BooleanFilterExpression {
+    value: Boolean
+    _operator: BooleanOperator = EQUALS
+}
+
+input BooleanFilter {
+    _logOp: LogOp = AND
+    _expressions: [BooleanFilterExpression]!
+}
+
+input BooleanArrayFilterExpression {
+    value: Boolean
+    values: [Boolean]
+    _apply: ArrayMode
+    _operator: BooleanOperator = EQUALS
+}
+
+input BooleanArrayFilter {
+    _logOp: LogOp = AND
+    _expressions: [BooleanArrayFilterExpression]!
+}
+
+input CalendarFilterExpression {
+    value: Calendar
+    _operator: CalendarOperator = AT
+}
+
+input CalendarFilter {
+    _logOp: LogOp = AND
+    _expressions: [CalendarFilterExpression]!
+}
+
+input CalendarArrayFilterExpression {
+    value: Calendar
+    values: [Calendar]
+    _apply: ArrayMode
+    _operator: CalendarOperator = AT
+}
+
+input CalendarArrayFilter {
+    _logOp: LogOp = AND
+    _expressions: [CalendarArrayFilterExpression]!
+}
+
+input DateFilterExpression {
+    value: Date
+    _operator: DateOperator = AT
+}
+
+input DateFilter {
+    _logOp: LogOp = AND
+    _expressions: [DateFilterExpression]!
+}
+
+input DateArrayFilterExpression {
+    value: Date
+    values: [Date]
+    _apply: ArrayMode
+    _operator: DateOperator = AT
+}
+
+input DateArrayFilter {
+    _logOp: LogOp = AND
+    _expressions: [DateArrayFilterExpression]!
+}
+
+input TimeFilterExpression {
+    value: Time
+    _operator: TimeOperator = AT
+}
+
+input TimeFilter {
+    _logOp: LogOp = AND
+    _expressions: [TimeFilterExpression]!
+}
+
+input TimeArrayFilterExpression {
+    value: Time
+    values: [Time]
+    _apply: ArrayMode
+    _operator: TimeOperator = AT
+}
+
+input TimeArrayFilter {
+    _logOp: LogOp = AND
+    _expressions: [TimeArrayFilterExpression]!
+}
+
+input MultiFormatStringFilter {
+    _logOp: LogOp = AND
+    html: StringFilter
+    markdown: StringFilter
+    plaintext: StringFilter
+}
+
+input MultiFormatStringArrayFilter {
+    _match: MultiFormatStringFilter
+    _apply: ArrayMode
+}
+
+input DcDepartmentModelFilter {
+    _logOp: LogOp = AND
+    _path: IDFilter
+    department: StringFilter
+    emailAddress: StringFilter
+    phoneNumber: StringFilter
+    faxNumber: StringFilter
+    address: MultiFormatStringFilter
+    city: StringFilter
+    province: StringFilter
+    postalCode: StringFilter
+    monday: DcDayModelFilter
+    tuesday: DcDayModelFilter
+    wednesday: DcDayModelFilter
+    thursday: DcDayModelFilter
+    friday: DcDayModelFilter
+    saturday: DcDayModelFilter
+    sunday: DcDayModelFilter
+    additionalDeptInfo: MultiFormatStringFilter
+    _variations: StringArrayFilter
+}
+
+input DcDepartmentModelArrayFilter {
+    _match: DcDepartmentModelFilter
+    _apply: ArrayMode
+}
+
+input DcServiceLexusModelFilter {
+    _logOp: LogOp = AND
+    _path: IDFilter
+    dealerLabourRate: StringFilter
+    reflectionDetailing: BooleanFilter
+    lexusTireCentre: BooleanFilter
+    alternateTransportation: BooleanFilter
+    lifestyleCollection: BooleanFilter
+    genuineAccessories: BooleanFilter
+    certifiedCollisionCentre: BooleanFilter
+    newVehicleInventory: BooleanFilter
+    englishUrlInventory: StringFilter
+    frenchUrlInventory: StringFilter
+    onlineServiceAppointmentBooking: BooleanFilter
+    englishUrlAppointment: StringFilter
+    frenchUrlAppointment: StringFilter
+    preOwnedVehicleSales: BooleanFilter
+    lexusCertifiedPreOwnedVehicles: BooleanFilter
+    authorizedLexusService: BooleanFilter
+    genuineLexusParts: BooleanFilter
+    expressService: BooleanFilter
+    _variations: StringArrayFilter
+}
+
+input DcServiceLexusModelArrayFilter {
+    _match: DcServiceLexusModelFilter
+    _apply: ArrayMode
+}
+
+input DcLaborModelFilter {
+    _logOp: LogOp = AND
+    _path: IDFilter
+    labourRateDealer: StringFilter
+    labourRateNational: StringFilter
+    labourRateProvincial: StringFilter
+    labourRateByProvince: StringArrayFilter
+    _variations: StringArrayFilter
+}
+
+input DcLaborModelArrayFilter {
+    _match: DcLaborModelFilter
+    _apply: ArrayMode
+}
+
+input DcDayModelFilter {
+    _logOp: LogOp = AND
+    _path: IDFilter
+    open: StringFilter
+    close: StringFilter
+    _variations: StringArrayFilter
+}
+
+input DcDayModelArrayFilter {
+    _match: DcDayModelFilter
+    _apply: ArrayMode
+}
+
+input DcDealershipModelFilter {
+    _logOp: LogOp = AND
+    _path: IDFilter
+    dealerCode: StringFilter
+    nameOfDealership: StringFilter
+    website: StringFilter
+    address: MultiFormatStringFilter
+    city: StringFilter
+    province: StringFilter
+    postalCode: StringFilter
+    phoneNumber: StringFilter
+    faxNumber: StringFilter
+    tollFreeNumber: StringFilter
+    effectiveDate: StringFilter
+    expiryDate: StringFilter
+    _variations: StringArrayFilter
+}
+
+input DcDealershipModelArrayFilter {
+    _match: DcDealershipModelFilter
+    _apply: ArrayMode
+}
+
+input DcStaffingModelFilter {
+    _logOp: LogOp = AND
+    _path: IDFilter
+    firstName: StringFilter
+    lastName: StringFilter
+    department: StringFilter
+    phoneNumber: StringFilter
+    extension: StringFilter
+    cellularNumber: StringFilter
+    faxNumber: StringFilter
+    email: StringFilter
+    jobTitle: StringFilter
+    displayOrder: StringFilter
+    _variations: StringArrayFilter
+}
+
+input DcStaffingModelArrayFilter {
+    _match: DcStaffingModelFilter
+    _apply: ArrayMode
+}
+
+input DcDealerModelFilter {
+    _logOp: LogOp = AND
+    _path: IDFilter
+    dealerCode: StringFilter
+    dealershipFragmentPaths: DcDealershipModelFilter
+    mappingFragmentPaths: DcMappingModelFilter
+    departmentReference: DcDepartmentModelArrayFilter
+    serviceToyotaReference: DcServiceToyotaModelFilter
+    serviceLexusReference: DcServiceLexusModelFilter
+    staffingReference: DcStaffingModelArrayFilter
+    labourReference: DcLaborModelFilter
+    _variations: StringArrayFilter
+}
+
+input DcDealerModelArrayFilter {
+    _match: DcDealerModelFilter
+    _apply: ArrayMode
+}
+
+input DcServiceToyotaModelFilter {
+    _logOp: LogOp = AND
+    _path: IDFilter
+    dealerLabourRate: StringFilter
+    maintenanceMenu: BooleanFilter
+    certifiedUsedVehicles: BooleanFilter
+    usedVehicles: BooleanFilter
+    toyotaTouch: BooleanFilter
+    deluxeCarsTrucksCheckbox: BooleanFilter
+    deluxeCarsTrucks: StringFilter
+    premiumCarsTruckscheckbox: BooleanFilter
+    premiumCarsTrucks: StringFilter
+    ultimateCarsTrucksCheckbox: BooleanFilter
+    ultimateCarsTrucks: StringFilter
+    deluxSuvVanCheckbox: BooleanFilter
+    deluxeSuvsVans: StringFilter
+    premiumSuvVansCheckbox: BooleanFilter
+    premiumSuvsVans: StringFilter
+    ultimateSuvVansCheckbox: BooleanFilter
+    ultimateSuvsVans: StringFilter
+    expressService: BooleanFilter
+    newVehicleInventory: BooleanFilter
+    englishUrlInventory: StringFilter
+    frenchUrlInventory: StringFilter
+    onlineServiceAppointmentBooking: BooleanFilter
+    englishUrlAppointment: StringFilter
+    frenchUrlAppointment: StringFilter
+    authorizedSupraDealer: BooleanFilter
+    authorizedMiraiDealer: BooleanFilter
+    authorizedBx4xDealer: BooleanFilter
+    kintoShare: BooleanFilter
+    _variations: StringArrayFilter
+}
+
+input DcServiceToyotaModelArrayFilter {
+    _match: DcServiceToyotaModelFilter
+    _apply: ArrayMode
+}
+
+input DcMappingModelFilter {
+    _logOp: LogOp = AND
+    _path: IDFilter
+    searchName: StringFilter
+    latitudeCoordinates: StringFilter
+    longitudeCoordinates: StringFilter
+    _variations: StringArrayFilter
+}
+
+input DcMappingModelArrayFilter {
+    _match: DcMappingModelFilter
+    _apply: ArrayMode
+}
+
+directive @resolver(name: String, options: String, source: String) on UNION
+union AllFragmentModels @resolver(name : "sites/default", source : "AllFragmentModels") = DcDepartmentModel | DcServiceLexusModel | DcLaborModel | DcDayModel | DcDealershipModel | DcStaffingModel | DcDealerModel | DcServiceToyotaModel | DcMappingModel
+
+union Reference @resolver(name : "sites/default", source : "Reference") = PageRef | ImageRef | MultimediaRef | ArchiveRef | DocumentRef | DcDepartmentModel | DcServiceLexusModel | DcLaborModel | DcDayModel | DcDealershipModel | DcStaffingModel | DcDealerModel | DcServiceToyotaModel | DcMappingModel
+
+directive @fetcher(name: String, options: String, source: String) on FIELD_DEFINITION
+type QueryType {
+    """
+    Get a single `dcDepartment`, specified by its path and optional variation
+    """
+    dcDepartmentByPath(_path: String!, variation: String): DcDepartmentModelResult! @fetcher(name : "sites/default", source : "dcDepartmentByPath")
+    """
+    Get a single `dcServiceLexus`, specified by its path and optional variation
+    """
+    dcServiceLexusByPath(_path: String!, variation: String): DcServiceLexusModelResult! @fetcher(name : "sites/default", source : "dcServiceLexusByPath")
+    """
+    Get a single `dcLabor`, specified by its path and optional variation
+    """
+    dcLaborByPath(_path: String!, variation: String): DcLaborModelResult! @fetcher(name : "sites/default", source : "dcLaborByPath")
+    """
+    Get a single `dcDay`, specified by its path and optional variation
+    """
+    dcDayByPath(_path: String!, variation: String): DcDayModelResult! @fetcher(name : "sites/default", source : "dcDayByPath")
+    """
+    Get a single `dcDealership`, specified by its path and optional variation
+    """
+    dcDealershipByPath(_path: String!, variation: String): DcDealershipModelResult! @fetcher(name : "sites/default", source : "dcDealershipByPath")
+    """
+    Get a single `dcStaffing`, specified by its path and optional variation
+    """
+    dcStaffingByPath(_path: String!, variation: String): DcStaffingModelResult! @fetcher(name : "sites/default", source : "dcStaffingByPath")
+    """
+    Get a single `dcDealer`, specified by its path and optional variation
+    """
+    dcDealerByPath(_path: String!, variation: String): DcDealerModelResult! @fetcher(name : "sites/default", source : "dcDealerByPath")
+    """
+    Get a single `dcServiceToyota`, specified by its path and optional variation
+    """
+    dcServiceToyotaByPath(_path: String!, variation: String): DcServiceToyotaModelResult! @fetcher(name : "sites/default", source : "dcServiceToyotaByPath")
+    """
+    Get a single `dcMapping`, specified by its path and optional variation
+    """
+    dcMappingByPath(_path: String!, variation: String): DcMappingModelResult! @fetcher(name : "sites/default", source : "dcMappingByPath")
+    """
+    Get multiple `dcDepartment` objects
+    """
+    dcDepartmentList(filter: DcDepartmentModelFilter, variation: String, _locale: String): DcDepartmentModelResults! @fetcher(name : "sites/default", source : "dcDepartmentList")
+    """
+    Get multiple `dcServiceLexus` objects
+    """
+    dcServiceLexusList(filter: DcServiceLexusModelFilter, variation: String, _locale: String): DcServiceLexusModelResults! @fetcher(name : "sites/default", source : "dcServiceLexusList")
+    """
+    Get multiple `dcLabor` objects
+    """
+    dcLaborList(filter: DcLaborModelFilter, variation: String, _locale: String): DcLaborModelResults! @fetcher(name : "sites/default", source : "dcLaborList")
+    """
+    Get multiple `dcDay` objects
+    """
+    dcDayList(filter: DcDayModelFilter, variation: String, _locale: String): DcDayModelResults! @fetcher(name : "sites/default", source : "dcDayList")
+    """
+    Get multiple `dcDealership` objects
+    """
+    dcDealershipList(filter: DcDealershipModelFilter, variation: String, _locale: String): DcDealershipModelResults! @fetcher(name : "sites/default", source : "dcDealershipList")
+    """
+    Get multiple `dcStaffing` objects
+    """
+    dcStaffingList(filter: DcStaffingModelFilter, variation: String, _locale: String): DcStaffingModelResults! @fetcher(name : "sites/default", source : "dcStaffingList")
+    """
+    Get multiple `dcDealer` objects
+    """
+    dcDealerList(filter: DcDealerModelFilter, variation: String, _locale: String): DcDealerModelResults! @fetcher(name : "sites/default", source : "dcDealerList")
+    """
+    Get multiple `dcServiceToyota` objects
+    """
+    dcServiceToyotaList(filter: DcServiceToyotaModelFilter, variation: String, _locale: String): DcServiceToyotaModelResults! @fetcher(name : "sites/default", source : "dcServiceToyotaList")
+    """
+    Get multiple `dcMapping` objects
+    """
+    dcMappingList(filter: DcMappingModelFilter, variation: String, _locale: String): DcMappingModelResults! @fetcher(name : "sites/default", source : "dcMappingList")
+}
