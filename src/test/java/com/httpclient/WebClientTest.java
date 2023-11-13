@@ -62,6 +62,7 @@ public class WebClientTest {
 
 	
 	//TODO3 works only without variables
+	//https://medium.com/decathlondigital/minimal-graphql-client-request-with-spring-boot-22e0041b170
 	@Test
 	public void usingSpringWebClient() throws IOException {
 
@@ -87,15 +88,15 @@ public class WebClientTest {
 //	    graphQLRequestBody.setVariables(variables.replace("dealerCode", "42120"));
 	    graphQLRequestBody.setVariables(variables);
 
-	    DealersGraphQLResponse countryDto = webClient.post()
+	    DcDealerList dealers = webClient.post()
 	        .uri(url)
 	        .contentType(MediaType.APPLICATION_JSON)
 	        .bodyValue(graphQLRequestBody)
 	        .retrieve()
-	        .bodyToMono(DealersGraphQLResponse.class)
+	        .bodyToMono(DcDealerList.class)
 	        .block();
 
-		  System.out.println(countryDto);
+		  System.out.println(dealers);
 
 	}
 	
@@ -150,35 +151,6 @@ public class WebClientTest {
 		
 	}
 
-	//Delete this later. no use
-	@Test
-	public void testingWithSpringFramework() throws Exception {
-		String url = "https://3.223.122.114/content/_cq_graphql/dealercentral/endpoint.json";
-
-		WebClient wc = WebClient.create(url);
-//
-//		GraphQlClient client = HttpGraphQlClient.create(wc);
-//
-//		String query1 = "{ " 
-//			    + " dcDealerList(filter: { dealerCode: { _expressions: { value: $dealerCode } } }) { "
-//			    + " items { " 
-//			            + " departmentReference { " 
-//			                + " emailAddress " 
-//			                + " } " 
-//			                + " } " 
-//			                + " } " 
-//			                + " }";
-//		
-//		Dealers dealers = client.document(query1)
-//         .variable("dealerCode", "42120")
-//         .retrieve("ipApi_location")
-//         .toEntity(Dealers.class)
-//         .block();
-//		 
-//		System.out.println(dealers);
-		System.out.println("TEST");
-		
-	}
 
 	
 }

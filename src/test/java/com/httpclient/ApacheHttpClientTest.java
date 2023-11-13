@@ -45,23 +45,7 @@ public class ApacheHttpClientTest {
 	private HttpClient httpClient;
 	
 	
-	@Test
-	public void usingCustomRequestBody() throws IOException {
-		
-	    GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
-	    
-	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers.graphql");
-	    final String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers-variables.graphql");
-	    
-	    graphQLRequestBody.setQuery(query);
-	    graphQLRequestBody.setVariables(variables);
-	    
-	    System.out.println(graphQLRequestBody.toString());
-	    
-
-	}
-	
-	//finally works, but have to remove tab, return carriage, new line from file content
+	//finally works. Have to remove tab, return carriage, new line from file content
 	@Test
 	public void usingHttpClient() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, ClientProtocolException, IOException {
 
@@ -95,7 +79,6 @@ public class ApacheHttpClientTest {
 	    httpPost.setEntity(input);
 	    
 	    HttpResponse response = client.execute(httpPost);
-	    
 		HttpEntity entity = response.getEntity();
 		
 		ObjectMapper mapper = new ObjectMapper();
@@ -103,6 +86,22 @@ public class ApacheHttpClientTest {
 		
 		System.out.println(dealers);
 		
+	}
+	
+	@Test
+	public void usingCustomRequestBody() throws IOException {
+		
+	    GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
+	    
+	    final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers.graphql");
+	    final String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("dealers-variables.graphql");
+	    
+	    graphQLRequestBody.setQuery(query);
+	    graphQLRequestBody.setVariables(variables);
+	    
+	    System.out.println(graphQLRequestBody.toString());
+	    
+
 	}
 	
 	@Test
