@@ -13,8 +13,11 @@ import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 //import java.time.Instant;
 //import java.time.LocalDate;
@@ -30,21 +33,17 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
@@ -55,21 +54,15 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.transform.stream.StreamSource;
 
 import org.joda.time.Chronology;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Days;
-import org.joda.time.LocalDate;
 //import org.joda.time.LocalDate;
 //import org.joda.time.LocalDateTime;//
 import org.joda.time.chrono.GJChronology;
-import org.joda.time.format.DateTimeFormat;
-//import org.joda.time.format.DateTimeFormatter;
 
 //import com.fasterxml.jackson.databind.JsonNode;
 //import com.fasterxml.jackson.databind.ObjectMapper;
@@ -78,9 +71,6 @@ import org.joda.time.format.DateTimeFormat;
 //import com.github.reinert.jjschema.v1.JsonSchemaV4Factory;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
-import com.telus.mediation.usage.internal.model.BatchInfoTypeVO;
-import com.telus.mediation.usage.internal.model.DataServiceEventVO;
-import com.telus.mediation.usage.internal.model.RawUsageListResponseVO;
 
 
 public class TestUtilities {
@@ -96,6 +86,9 @@ public class TestUtilities {
 		//pushing test
 
 		convertStringToLocalDateTime();
+//		currentTimeInUTCAndInDifferentTimeZone();
+//		gettingCurrentLocalTime();
+		//convertStringToLocalDateTime();
 //		javaToJsonSchema();
 		
 		//testing2
@@ -622,6 +615,11 @@ public class TestUtilities {
 	}
 
 
+	private static void gettingCurrentLocalTime() {
+		
+		LocalDateTime now = LocalDateTime.now();
+		System.out.println("LocalDateTime..." + now);
+	}
 
 	private static void filteringEntries() {
         String a[] = new String[] { "A", "B", "C", "D" }; 
@@ -655,46 +653,24 @@ public class TestUtilities {
 
 
 
-	private static void convertToUTCTime() {
-		//2001-07-04T12:08:56.235-0700 ... does not work (yyyy-MM-dd'T'HH:mm:ss.SSSZ)
-		//yyyy-MM-dd'T'HH:mm:ss.SSSXXX ...works 
-        //converting from String localDateTime with zone to UTC
-//		ZonedDateTime zonedDateTime = ZonedDateTime.parse("2019-09-25T08:00:00.000-06:00"); 
-//		System.out.println(zonedDateTime);
-//		
-//		//Getting in UTC time
-//        ZonedDateTime utcTime = zonedDateTime.withZoneSameInstant(ZoneOffset.UTC); 
-//        System.out.println("utcTime..." + utcTime);
-//        
-//        
-//        //Converting to LocalDateTime & Data Object
-//        LocalDateTime localDateTime = utcTime.toLocalDateTime();
-//        System.out.println("localDateTime..." + localDateTime);
-//        
-//        //Converting to Date object
-//        Date date = java.sql.Timestamp.valueOf(localDateTime);
-//        System.out.println(date);
-        
-	}
-
 
 	private static void currentTimeInUTCAndInDifferentTimeZone() {
 			//Instant is a moment on the timeline in UTC. Capture the current moment in UTC.
-//	        Instant instant = Instant.now();
-//
-//	        System.out.println("Current time in UTC : " + instant);
-//
-//	        //Get date time only (only Date and Time. No timezone)
-//	        LocalDateTime result = LocalDateTime.ofInstant(instant, ZoneId.of(ZoneOffset.UTC.getId()));
-//	        System.out.println("LocalDateTime : " + result);
-//
-//	        //Get date time + timezone
-//	        ZonedDateTime zonedDateTime = instant.atZone(ZoneId.of("America/New_York"));
-//	        System.out.println("In New York time..." + zonedDateTime);
-//
-//	        //get date time + timezone
-//	        ZonedDateTime zonedDateTime2 = instant.atZone(ZoneId.of("Asia/Tokyo"));
-//	        System.out.println("In Tokyo time..." + zonedDateTime2);
+	        Instant instant = Instant.now();
+
+	        System.out.println("Current time in UTC : " + instant);
+
+	        //Get date time only (only Date and Time. No timezone)
+	        LocalDateTime result = LocalDateTime.ofInstant(instant, ZoneId.of(ZoneOffset.UTC.getId()));
+	        System.out.println("LocalDateTime : " + result);
+
+	        //Get date time + timezone
+	        ZonedDateTime zonedDateTime = instant.atZone(ZoneId.of("America/New_York"));
+	        System.out.println("In New York time..." + zonedDateTime);
+
+	        //get date time + timezone
+	        ZonedDateTime zonedDateTime2 = instant.atZone(ZoneId.of("Asia/Tokyo"));
+	        System.out.println("In Tokyo time   ..." + zonedDateTime2);
 	        
 	}
 
