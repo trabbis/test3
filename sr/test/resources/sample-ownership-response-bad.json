@@ -1,0 +1,152 @@
+{
+    "responseHeader": {
+        "status": "SUCCESS",
+        "messages": [
+            {
+                "applicationId": "CDMS-current",
+                "messageDateTime": "2023-11-24T13:58:43.132-05:00",
+                "service": "Customer API",
+                "operation": "GET /api/v1.0/customer/cdms/vehicles/ownership/2T2GGCEZ6RC046062/histories"
+            }
+        ]
+    },
+    "vehicleOwnerships": [
+        {
+            "saleType": "1A",
+            "vehicle": {
+                "vehicleID": "2T2GGCEZ6RC046062",
+                "brand": "LEX",
+                "model": "HGCEZT",
+                "modelYear": "2024",
+                "modelDescription": "NX 350",
+                "seriesCode": "NX",
+                "seriesName": "",
+                "registrationDate": "2023-11-24",
+                "vinInfoChangeSource": "",
+                "vinOwnershipLastChangeDate": "",
+                "originalRetailDealerCode": "42357"
+            },
+            "vehicleOwnershipDetails": [
+                {
+                    "customer": {
+                        "partyID": 12000426,
+                        "businessPartnerNumber": "12000426",
+                        "prospectIndicator": false,
+                        "person": {
+                            "firstName": "John",
+                            "familyName": "wood",
+                            "salutation": "MR",
+                            "lastUpdateTimestamp": "2023-11-24T08:08:06-05:00"
+                        },
+                        "addresses": [
+                            {
+                                "locationID": 0,
+                                "line1": "471 Toyota Place",
+                                "city": "Scarborough",
+                                "provinceCode": "ON",
+                                "countryCode": "CA",
+                                "postalCode": "M1H 1H9",
+                                "addressType": "HOME",
+                                "preferredIndicator": true,
+                                "InvalidContactLocationReasonCode": "",
+                                "ValidIndicator": true,
+                                "CorrectedIndicator": false,
+                                "lastUpdateTimestamp": "2023-11-24T08:08:03-05:00",
+                                "lastUpdateUserID": "TestRDR_LexusDealer"
+                            }
+                        ],
+                        "preferredLanguageCode": "en-CA",
+                        "oiccProcessSourceCode": "RDR",
+                        "caslStatus": {
+                            "status": "NO_ECONTACT",
+                            "sourceCode": "TOYOTA.CA",
+                            "effectiveDateTime": ""
+                        },
+                        "marketingOptOut": {
+                            "optOutIndicator": true,
+                            "optOutDate": "2023-11-24T13:08:00.000+0000"
+                        },
+                        "communicationPreferences": [],
+                        "suspendMail": {
+                            "suspendMailReason": "C",
+                            "suspendMailSource": "HOME",
+                            "suspendMailDate": "2023-11-24T13:08:00.000+0000"
+                        },
+                        "customerRelationships": [],
+                        "lastExistingIndicator": true,
+                        "lastUpdateTimestamp": "2023-11-24T08:08:06-05:00"
+                    },
+                    "ownershipTypeCode": "OWNER",
+                    "relationshipTypeCode": "REG_OWNER",
+                    "ownershipStartDate": "2023-11-24",
+                    "ownershipEndDate": "",
+                    "ownershipEndReason": ""
+                },
+                {
+                    "customer": {
+                        "partyID": 12000427,
+                        "businessPartnerNumber": "12000427",
+                        "prospectIndicator": false,
+                        "organization": {
+                            "companyName": "27.Ltd",
+                            "lastUpdateTimestamp": "2023-11-24T08:08:13-05:00",
+                            "lastUpdateUserID": "TestRDR_LexusDealer"
+                        },
+                        "addresses": [
+                            {
+                                "locationID": 0,
+                                "line1": "5 Toyota Place",
+                                "city": "Scarborough",
+                                "provinceCode": "ON",
+                                "countryCode": "CA",
+                                "postalCode": "M1H 1H9",
+                                "addressType": "HOME",
+                                "preferredIndicator": true,
+                                "InvalidContactLocationReasonCode": "",
+                                "ValidIndicator": true,
+                                "CorrectedIndicator": false,
+                                "lastUpdateTimestamp": "2023-11-24T08:08:10-05:00",
+                                "lastUpdateUserID": "TestRDR_LexusDealer"
+                            }
+                        ],
+                        "phones": [
+                            {
+                                "locationID": 0,
+                                "localNumber": "6543210",
+                                "extensionNumber": "",
+                                "areaCode": "987",
+                                "useCode": "MOBILE",
+                                "preferredIndicator": false,
+                                "InvalidContactLocationReasonCode": "",
+                                "InvalidContactLocationSource": "",
+                                "lastUpdateTimestamp": "2023-11-24T08:08:11-05:00",
+                                "lastUpdateUserID": "",
+                                "LastUpdateSource": ""
+                            }
+                        ],
+                        "preferredLanguageCode": "en-CA",
+                        "oiccProcessSourceCode": "RDR",
+                        "caslStatus": {
+                            "status": "NO_ECONTACT",
+                            "sourceCode": "TOYOTA.CA",
+                            "effectiveDateTime": ""
+                        },
+                        "suspendMail": {
+                            "suspendMailReason": "U",
+                            "suspendMailSource": "HOME"
+                        },
+                        "customerRelationships": [],
+                        "lastExistingIndicator": true,
+                        "lastUpdateTimestamp": "2023-11-24T08:08:13-05:00",
+                        "lastUpdateUserID": "TestRDR_LexusDealer"
+                    },
+                    "ownershipTypeCode": "ALT_OWNER",
+                    "relationshipTypeCode": "DRIVER",
+                    "ownershipStartDate": "2023-11-24",
+                    "ownershipEndDate": "",
+                    "ownershipEndReason": ""
+                }
+            ]
+        }
+    ]
+}

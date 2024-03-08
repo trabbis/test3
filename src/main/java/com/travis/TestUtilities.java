@@ -532,9 +532,9 @@ public class TestUtilities {
 	
 	public static void convertStringToLocalDateTime() {
 		String dateStr = "2020-08-17T10:11:16.908732";
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
 
-		LocalDateTime dateTime = LocalDateTime.parse(dateStr, format);
+		LocalDateTime dateTime = LocalDateTime.parse(dateStr, formatter);
 		System.out.println(dateTime);
 
 		dateStr = "2020-08-17T10:11:16.908732";
@@ -542,10 +542,15 @@ public class TestUtilities {
 		System.out.println(dateTime);
 		
 		dateStr = "2021-09-19T10:11:16";
-		format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+		formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
-		dateTime = LocalDateTime.parse(dateStr, format);
+		dateTime = LocalDateTime.parse(dateStr, formatter);
 		System.out.println(dateTime);
+		
+		LocalDateTime now = LocalDateTime.now();
+		formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+		System.out.println(now.format(formatter));
+		
 
 	}
 

@@ -1,0 +1,255 @@
+{
+    "responseHeader": {
+        "status": "SUCCESS",
+        "messages": [
+            {
+                "applicationId": "CDMS-current",
+                "messageDateTime": "2023-11-24T13:58:43-05:00",
+                "service": "Customer API",
+                "operation": "GET /api/v1.0/customer/cdms/vehicles/ownership/5TDEBRCH0PS111256/histories"
+            }
+        ]
+    },
+    "vehicleOwnerships": [
+        {
+            "saleType": "1A",
+            "vehicle": {
+                "vehicleID": "5TDEBRCH0PS111256",
+                "brand": "TOY",
+                "model": "DBRCHC",
+                "modelYear": "2023",
+                "modelDescription": "Highlander Hybrid Limited AWD",
+                "seriesCode": "HIH",
+                "seriesName": "",
+                "vinInfoChangeSource": "",
+                "originalRetailDealerCode": "42376"
+            },
+            "vehicleOwnershipDetails": [
+                {
+                    "customer": {
+                        "partyID": 12000432,
+                        "businessPartnerNumber": "12000432",
+                        "prospectIndicator": false,
+                        "organization": {
+                            "companyName": "abc corp",
+                            "LastUpdateSource": "Salesforce"
+                        },
+                        "addresses": [
+                            {
+                                "locationID": 0,
+                                "line1": "1 TOYOTA PL",
+                                "city": "SCARBOROUGH",
+                                "provinceCode": "ON",
+                                "countryCode": "CA",
+                                "postalCode": "M1H1H9",
+                                "addressType": "HOME",
+                                "preferredIndicator": true,
+                                "InvalidContactLocationReasonCode": "",
+                                "ValidIndicator": true,
+                                "CorrectedIndicator": false,
+                                "LastUpdateSource": "Salesforce"
+                            }
+                        ],
+                        "phones": [
+                            {
+                                "locationID": 0,
+                                "localNumber": "5557778",
+                                "extensionNumber": "",
+                                "areaCode": "416",
+                                "useCode": "WORK",
+                                "preferredIndicator": false,
+                                "InvalidContactLocationReasonCode": "",
+                                "InvalidContactLocationSource": "",
+                                "lastUpdateUserID": "",
+                                "LastUpdateSource": "Salesforce"
+                            }
+                        ],
+                        "electronicAddresses": [
+                            {
+                                "locationID": 0,
+                                "uriID": "abc.corp@abccorp.com",
+                                "useCode": "PERSONAL",
+                                "preferredIndicator": true,
+                                "InvalidContactLocationReasonCode": "",
+                                "LastUpdateSource": "Salesforce"
+                            }
+                        ],
+                        "oiccProcessSourceCode": "Salesforce",
+                        "caslStatus": {
+                            "status": "NO_ECONTACT",
+                            "sourceCode": "TOYOTA.CA"
+                        },
+                        "suspendMail": {
+                            "suspendMailReason": "U",
+                            "suspendMailSource": "HOME"
+                        },
+                        "customerRelationships": [],
+                        "lastExistingIndicator": true,
+                        "LastUpdateSource": "Salesforce"
+                    },
+                    "ownershipTypeCode": "OWNER",
+                    "relationshipTypeCode": "REG_OWNER",
+                    "ownershipEndReason": ""
+                },
+                {
+                    "customer": {
+                        "partyID": 12000433,
+                        "businessPartnerNumber": "12000433",
+                        "prospectIndicator": false,
+                        "organization": {
+                            "companyName": "excel auto corp",
+                            "LastUpdateSource": "Salesforce"
+                        },
+                        "addresses": [
+                            {
+                                "locationID": 0,
+                                "line1": "810 ROWNTREE DAIRY RD",
+                                "city": "WOODBRIDGE",
+                                "provinceCode": "ON",
+                                "countryCode": "CA",
+                                "postalCode": "L4L5V3",
+                                "addressType": "HOME",
+                                "preferredIndicator": true,
+                                "InvalidContactLocationReasonCode": "",
+                                "ValidIndicator": true,
+                                "CorrectedIndicator": false,
+                                "LastUpdateSource": "Salesforce"
+                            }
+                        ],
+                        "phones": [
+                            {
+                                "locationID": 0,
+                                "localNumber": "2649888",
+                                "extensionNumber": "",
+                                "areaCode": "905",
+                                "useCode": "WORK",
+                                "preferredIndicator": false,
+                                "InvalidContactLocationReasonCode": "",
+                                "InvalidContactLocationSource": "",
+                                "lastUpdateUserID": "",
+                                "LastUpdateSource": "Salesforce"
+                            }
+                        ],
+                        "electronicAddresses": [
+                            {
+                                "locationID": 0,
+                                "uriID": "excel.corp@excelcorp.com",
+                                "useCode": "PERSONAL",
+                                "preferredIndicator": true,
+                                "InvalidContactLocationReasonCode": "",
+                                "LastUpdateSource": "Salesforce"
+                            }
+                        ],
+                        "oiccProcessSourceCode": "Salesforce",
+                        "caslStatus": {
+                            "status": "NO_ECONTACT",
+                            "sourceCode": "TOYOTA.CA"
+                        },
+                        "suspendMail": {
+                            "suspendMailReason": "U",
+                            "suspendMailSource": "HOME"
+                        },
+                        "customerRelationships": [],
+                        "lastExistingIndicator": true,
+                        "LastUpdateSource": "Salesforce"
+                    },
+                    "ownershipTypeCode": "ALT_OWNER",
+                    "relationshipTypeCode": "DRIVER",
+                    "ownershipEndReason": ""
+                },
+                {
+                    "customer": {
+                        "partyID": 8616597,
+                        "customerNumber": "K02861645",
+                        "businessPartnerNumber": "8616597",
+                        "prospectIndicator": false,
+                        "person": {
+                            "firstName": "KUNAL",
+                            "familyName": "KAPOOR",
+                            "salutation": "MR",
+                            "PrivacyConsentCode": "RDR",
+                            "lastUpdateUserID": "CDB011B",
+                            "LastUpdateSource": "IIB_OICC"
+                        },
+                        "addresses": [
+                            {
+                                "locationID": 0,
+                                "line1": "8 SYDIE LANE",
+                                "city": "TOTTENHAM",
+                                "provinceCode": "ON",
+                                "countryCode": "CA",
+                                "postalCode": "L0G1W0",
+                                "addressType": "HOME",
+                                "preferredIndicator": true,
+                                "InvalidContactLocationReasonCode": "",
+                                "ValidIndicator": true,
+                                "CorrectedIndicator": true,
+                                "lastUpdateUserID": "LOAD",
+                                "LastUpdateSource": "IIB_OICC"
+                            }
+                        ],
+                        "phones": [
+                            {
+                                "locationID": 0,
+                                "localNumber": "5055751",
+                                "extensionNumber": "",
+                                "areaCode": "416",
+                                "useCode": "HOME",
+                                "preferredIndicator": false,
+                                "InvalidContactLocationReasonCode": "",
+                                "InvalidContactLocationSource": "",
+                                "lastUpdateUserID": "ISABELLAG",
+                                "LastUpdateSource": "IIB_OICC"
+                            },
+                            {
+                                "locationID": 0,
+                                "localNumber": "5055751",
+                                "extensionNumber": "",
+                                "areaCode": "416",
+                                "useCode": "MOBILE",
+                                "preferredIndicator": true,
+                                "InvalidContactLocationReasonCode": "",
+                                "InvalidContactLocationSource": "",
+                                "lastUpdateUserID": "LOAD",
+                                "LastUpdateSource": "IIB_OICC"
+                            },
+                            {
+                                "locationID": 0,
+                                "localNumber": "0000000",
+                                "extensionNumber": "",
+                                "areaCode": "905",
+                                "useCode": "WORK",
+                                "preferredIndicator": false,
+                                "InvalidContactLocationReasonCode": "",
+                                "InvalidContactLocationSource": "",
+                                "lastUpdateUserID": "CDB011B",
+                                "LastUpdateSource": "IIB_OICC"
+                            }
+                        ],
+                        "electronicAddresses": [],
+                        "preferredLanguageCode": "en-CA",
+                        "oiccProcessSourceCode": "D",
+                        "caslStatus": {
+                            "status": "YES_ECONTACT",
+                            "sourceCode": "RDR"
+                        },
+                        "marketingOptOut": {
+                            "optOutIndicator": false
+                        },
+                        "communicationPreferences": [],
+                        "suspendMail": {
+                            "suspendMailReason": "U",
+                            "suspendMailSource": "HOME"
+                        },
+                        "customerRelationships": [],
+                        "lastExistingIndicator": true,
+                        "LastUpdateSource": "IIB_OICC"
+                    },
+                    "ownershipTypeCode": "OWNER",
+                    "relationshipTypeCode": "REG_OWNER",
+                    "ownershipEndReason": ""
+                }
+            ]
+        }
+    ]
+}
