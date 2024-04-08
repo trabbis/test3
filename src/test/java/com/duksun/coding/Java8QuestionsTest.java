@@ -147,6 +147,23 @@ public class Java8QuestionsTest {
 		Java8Questions.startWith2(arg);
 		
 	}
+	
+	@Test
+	public void elementNotFouund() {
+		assertEquals(null, Java8Questions.findElements("1A"));
+	}
+	
+	@Test
+	public void elementFound() {
+		assertEquals("2C", Java8Questions.findElements("2C"));
+	}
+	
+	@Test
+	public void elementFoundTrueOrFalse() {
+		assertEquals(true, Java8Questions.findElementTrueOrFalse("2C"));
+		
+	}
+	
 }
 
 

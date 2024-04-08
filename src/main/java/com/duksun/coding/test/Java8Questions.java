@@ -206,8 +206,20 @@ public class Java8Questions {
 	}
 
 
-
-
+	public static String findElements(String key) {
+		String[] arg = new String[] {"2C", "4J", "4G"};
+		
+		return Arrays.asList(arg).stream()
+			.filter(list -> list.equalsIgnoreCase(key))
+			.findFirst()
+			.orElse(null);
+	}
+	
+	public static Boolean findElementTrueOrFalse(String key) {
+		String[] arg = new String[] {"2C", "4J", "4G"};
+		
+		return Arrays.asList(arg).stream().anyMatch(key::contains);
+	}
 	
 	
 }
