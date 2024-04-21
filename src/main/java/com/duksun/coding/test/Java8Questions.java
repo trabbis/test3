@@ -19,8 +19,7 @@ public class Java8Questions {
 	public static List<Integer> returnOnlyEven(Integer[] arg) {
 		
 		List<Integer> list = Arrays.asList(arg);
-		//TODO fix this
-//		list = list.stream().filter(p -> p % 2 == 0).toList();
+		list = list.stream().filter(p -> p % 2 == 0).toList();
 		return list;
 		
 	}
@@ -51,9 +50,9 @@ public class Java8Questions {
 	}
 
 	public static List<Employee> sortByTop3Salaries(List<Employee> arg) {
-//		List<Employee> list = arg.stream().sorted((a,b) -> b.getSalary().intValue() - a.getSalary().intValue()).collect(Collectors.toList());
-		
 
+		//It works, but check another solution
+//		List<Employee> list = arg.stream().sorted((a,b) -> b.getSalary().intValue() - a.getSalary().intValue()).collect(Collectors.toList());
 //		List<Employee> top3 = new ArrayList<Employee>();
 //		//Only return three records;
 //		for (int i=0;i<list.size();i++) {
@@ -76,6 +75,7 @@ public class Java8Questions {
 	
 	public static List<Employee> salariesLessThan3rdSalary(List<Employee> arg) {
 
+		//It works, but check another solution
 //		List<Employee> list = arg.stream().sorted((a,b) -> b.getSalary().intValue() - a.getSalary().intValue()).collect(Collectors.toList());
 //		
 //		List<Employee> top3 = new ArrayList<Employee>();

@@ -109,6 +109,12 @@ public class Java8QuestionsTest {
 	}
 	
 	@Test
+	public void duplicateElements2() {
+		String arg = "1 2 3 4 1 2 3";
+		assertEquals(3, Java8Questions.countDuplicates(arg).size());
+	}
+	
+	@Test
 	public void uniqueElements() {
 		String arg = "welcome hello welcome welcome hello hi ni welcome sayonara";
 		assertEquals(3, Java8Questions.uniqueElements(arg).size());
