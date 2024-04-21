@@ -156,17 +156,20 @@ public class Java8QuestionsTest {
 	
 	@Test
 	public void elementNotFouund() {
-		assertEquals(null, Java8Questions.findElements("1A"));
+		String[] arg = new String[] {"2C", "4J", "4G"};
+		assertEquals(null, Java8Questions.findElements(arg, "1A"));
 	}
 	
 	@Test
 	public void elementFound() {
-		assertEquals("2C", Java8Questions.findElements("2C"));
+		String[] arg = new String[] {"2C", "4J", "4G"};
+		assertEquals("2C", Java8Questions.findElements(arg, "2C"));
 	}
 	
 	@Test
 	public void elementFoundTrueOrFalse() {
-		assertEquals(true, Java8Questions.findElementTrueOrFalse("2C"));
+		String[] arg = new String[] {"2C", "4J", "4G"};
+		assertEquals(true, Java8Questions.findElementTrueOrFalse(arg, "2C"));
 		
 	}
 	
