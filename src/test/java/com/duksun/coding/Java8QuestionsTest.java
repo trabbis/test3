@@ -169,7 +169,7 @@ public class Java8QuestionsTest {
 	@Test
 	public void elementFoundTrueOrFalse() {
 		String[] arg = new String[] {"2C", "4J", "4G"};
-		assertEquals(true, Java8Questions.findElementTrueOrFalse(arg, "2C"));
+		assertEquals(true, Java8Questions.findElementTrueOrFalse(arg, "2c"));
 		
 	}
 	

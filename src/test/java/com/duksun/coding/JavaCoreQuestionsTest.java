@@ -1,6 +1,7 @@
 package com.duksun.coding;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,24 @@ public class JavaCoreQuestionsTest {
 		
 		assertEquals("test1", JavaCoreQuestions.sortByFirstName(list).get(0).getFirstName());
 		
+	}
+	
+	
+	@Test
+	public void doesThrowNullPointerExceptionIfCollectionIsNullWithinForLoop( ) {
+		
+		//In Junit5 
+		assertThrows(NullPointerException.class, () -> {
+			List<Employee> list = null; //new ArrayList<Employee>();
+			
+			for (Employee e : list) {
+				System.out.println(e.getEmpId());
+			}
+			
+		});
+		
 		
 		
 	}
+	
 }
