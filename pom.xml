@@ -218,6 +218,32 @@
 		</dependency>
 
 
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.0.8</version>
+        </dependency>
+        	
+        	
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.1.10.RELEASE</version>
+        </dependency>
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.1.10.RELEASE</version>
+        </dependency>
+        
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.9.3</version>
+        </dependency>
+
+
 		
 	</dependencies>
 	<build>
@@ -238,6 +264,46 @@
 				</configuration>
 			</plugin>
 			
+
+			<plugin>
+				<groupId>io.swagger.codegen.v3</groupId>
+				<artifactId>swagger-codegen-maven-plugin</artifactId>
+				<version>3.0.8</version>
+				<executions>
+					<execution>
+						<id>FedEx</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/swagger/track.json</inputSpec>
+							<language>java</language>
+							<library>resttemplate</library>
+							
+							<configOptions>
+								<sourceFolder>/</sourceFolder>
+                                
+                                <library>resttemplate</library>
+                                <java8>true</java8>
+                                <dateLibrary>java8</dateLibrary>
+                                <licenseName>Apache 2.0</licenseName>
+                                <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+                            </configOptions>
+                            
+							<generateApis>false</generateApis>
+                            <modelPackage>ca.toyota.app.prms.rest.fedex.model</modelPackage>
+							<!--packageName>${client.base.package.name}</packageName>
+                            <apiPackage>${client.base.package.name}.api</apiPackage>
+                            <invokerPackage>${client.base.package.name}.invoker</invokerPackage-->							
+                            <output>target/generated-sources</output>
+                            							
+							
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			
 			
 						
