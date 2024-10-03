@@ -22,8 +22,13 @@ public class TestUtilities3Test {
 	}
 	
 	@Test
-	public void capitalizeIfNttParamWithEmpty() {
+	public void capitalizeIfNttParamWithSpace() {
 		assertEquals(" ", TestUtilities3.capitalizeIfNttParam("ntt", " "));
+	}
+	
+	@Test
+	public void capitalizeIfNttParamWithBlank() {
+		assertEquals("", TestUtilities3.capitalizeIfNttParam("ntt", ""));
 	}
 	
 	@Test
