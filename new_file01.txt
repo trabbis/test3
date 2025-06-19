@@ -1,5 +1,3 @@
-rebase commiting2
-rebase testing1
 just another file chnage3
 
 ed
