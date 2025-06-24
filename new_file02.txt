@@ -1,18 +1,1 @@
-change8
-chang 7
-
-change6
-change5
-
-
-change2
-change1
-
-another change
-added locally
-
-locally...changed remotely3-- remote
-edited2
-
-changed in branches
-another changes in branch3
+clean code1
