@@ -16,5 +16,3 @@ edited2
 
 changed in branches
 another changes in branch3
-
-change3
