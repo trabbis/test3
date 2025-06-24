@@ -1,3 +1,6 @@
+merging test1
+
+
 merging commit12
 merging commit11
 rebase commiting2
