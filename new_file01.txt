@@ -1,11 +1,2 @@
-just another file chnage3
-
-ed
-edited
-changed from local
-changed remotely
-
-chagned in branch3
-another changes in branch3
-
-2another changes in branch3
+clean
+file01-change1

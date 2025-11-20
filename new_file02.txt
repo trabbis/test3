@@ -1,8 +1,1 @@
-another change
-added locally
-
-locally...changed remotely3-- remote
-edited2
-
-changed in branches
-another changes in branch3
+file02-change1
