@@ -3,7 +3,7 @@ package com.travis;
 import java.util.*;
 import java.util.stream.Stream;
 
-public class Test2 {
+public class Codility01 {
 
 	/**
 	 * Finds the top 10 most frequent numbers from a stream of integers.
